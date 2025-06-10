@@ -6,12 +6,14 @@ function Homepage() {
     <div className={styles.wrapper}>
       <Card
         name="Marc Plarisan"
-        description="I’m an incoming 4th-year IT student specializing in mobile development for both iOS and Android, as well as backend development. Furthermore, I also have experience in web development and game development, allowing me to build versatile and engaging digital solutions across multiple platforms."
+        description="Hi! I develop websites, mobile apps, and video games."
         socialLinks={{
           github: "https://github.com/DragunWF",
-          linkedin: "https://linkedin.com/in/marcplarisan",
-          twitter: "https://twitter.com/dragunwf",
-          email: "dragunwf@example.com",
+          linkedin: "https://www.linkedin.com/in/marc-plarisan/",
+          itchio: "https://dragunwf.itch.io",
+          typeracer: "https://data.typeracer.com/pit/profile?user=dragunwf",
+          codewars: "https://www.codewars.com/users/DragunWF",
+          steam: "https://steamcommunity.com/id/dragunwf",
         }}
       />
     </div>
