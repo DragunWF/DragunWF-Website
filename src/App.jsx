@@ -5,6 +5,7 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
 import ApologyPage from "./pages/ApologyPage";
+import Navigation from "./components/Navigation";
 
 function App() {
   const animatedBackgroundLayers = [
@@ -31,6 +32,7 @@ function App() {
   return (
     <BrowserRouter>
       <LayeredBackground layers={animatedBackgroundLayers} />
+      <Navigation />
 
       <Routes>
         <Route index element={<Homepage />} />
