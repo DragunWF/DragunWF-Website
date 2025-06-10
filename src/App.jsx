@@ -1,4 +1,9 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LayeredBackground } from "animated-backgrounds";
+import Homepage from "./pages/Homepage";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Blog from "./pages/Blog";
 
 function App() {
   const layers = [
@@ -23,10 +28,15 @@ function App() {
   ];
 
   return (
-    <div>
+    <BrowserRouter>
       <LayeredBackground layers={layers} />
-      {/* Your content */}
-    </div>
+      <Routes>
+        <Route index element={<Homepage />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="about" element={<About />} />
+        <Route path="blog" element={<Blog />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
