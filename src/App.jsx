@@ -4,6 +4,7 @@ import Homepage from "./pages/Homepage";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
+import ApologyPage from "./pages/ApologyPage";
 
 function App() {
   const layers = [
@@ -35,6 +36,7 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="*" element={<ApologyPage />} />
       </Routes>
     </BrowserRouter>
   );
