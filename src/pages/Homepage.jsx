@@ -5,8 +5,8 @@ function Homepage() {
   return (
     <div className={styles.wrapper}>
       <Card
-        name="Marc Plarisan"
-        description="Hi! I develop websites, mobile apps, and video games."
+        name="DragunWF"
+        description="Hi, I'm Marc. I develop websites, mobile apps, and video games."
         socialLinks={{
           github: "https://github.com/DragunWF",
           linkedin: "https://www.linkedin.com/in/marc-plarisan/",
