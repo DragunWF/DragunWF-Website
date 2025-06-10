@@ -40,6 +40,7 @@ function IntroCard({
     </svg>
   );
 
+  // TODO: Separate this card into something else and replace name with title.
   return (
     <div className={styles.card}>
       <div className={styles.content}>
