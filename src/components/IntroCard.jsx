@@ -1,7 +1,6 @@
-import React from "react";
-import styles from "./Card.module.css";
+import styles from "./IntroCard.module.css";
 
-const Card = ({
+function IntroCard({
   name = "Default Name",
   description = "Default Description",
   socialLinks = {
@@ -12,7 +11,7 @@ const Card = ({
     codewars: "",
     steam: "",
   },
-}) => {
+}) {
   // Custom SVG Icons
   const ItchioIcon = () => (
     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -127,6 +126,6 @@ const Card = ({
       </div>
     </div>
   );
-};
+}
 
-export default Card;
+export default IntroCard;

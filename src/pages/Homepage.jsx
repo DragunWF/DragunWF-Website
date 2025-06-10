@@ -1,10 +1,10 @@
 import styles from "./Homepage.module.css";
-import Card from "../components/Card";
+import IntroCard from "../components/IntroCard";
 
 function Homepage() {
   return (
     <div className={styles.wrapper}>
-      <Card
+      <IntroCard
         name="DragunWF"
         description="Hi, I'm Marc. I develop websites, mobile apps, and video games."
         socialLinks={{
