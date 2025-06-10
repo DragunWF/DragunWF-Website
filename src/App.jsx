@@ -7,7 +7,7 @@ import Blog from "./pages/Blog";
 import ApologyPage from "./pages/ApologyPage";
 
 function App() {
-  const layers = [
+  const animatedBackgroundLayers = [
     {
       animation: "starryNight",
       opacity: 0.7,
@@ -30,7 +30,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <LayeredBackground layers={layers} />
+      <LayeredBackground layers={animatedBackgroundLayers} />
+
       <Routes>
         <Route index element={<Homepage />} />
         <Route path="contact" element={<Contact />} />
