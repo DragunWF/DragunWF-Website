@@ -1,6 +1,7 @@
 import styles from "./Description.module.css";
 
-function Description({ children, textAlign }) {
+function Description({ children, textAlign, isMarginPresent = true }) {
+  const marginClass = isMarginPresent ? styles.margin : styles.noMargin;
   let textAlignClass;
   switch (textAlign) {
     case "center":
@@ -17,9 +18,7 @@ function Description({ children, textAlign }) {
       break;
   }
 
-  return (
-    <p className={`${styles.description} ${textAlignClass}`}>{children}</p>
-  );
+  return <p className={`${styles.description} ${marginClass}`}>{children}</p>;
 }
 
 export default Description;

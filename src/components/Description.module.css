@@ -1,8 +1,18 @@
 .description {
   font-size: 1rem;
   color: #d1d5db;
-  margin: 0 0 1.5rem 0;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
   line-height: 1.5;
+}
+
+.margin {
+  margin-bottom: 1.5rem;
+}
+
+.noMargin {
+  margin-bottom: 0;
 }
 
 .justify {
