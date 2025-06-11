@@ -47,7 +47,7 @@ function IntroCard({
   return (
     <Card>
       <Title>{name}</Title>
-      <Description>{description}</Description>
+      <Description textAlign="center">{description}</Description>
 
       <div className={styles.socialLinks}>
         {socialLinks.github && (

@@ -5,6 +5,18 @@
   line-height: 1.5;
 }
 
+.justify {
+  text-align: justify;
+}
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
 @media (max-width: 480px) {
   .title {
     font-size: 1.25rem;
