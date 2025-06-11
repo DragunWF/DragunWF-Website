@@ -1,0 +1,12 @@
+.description {
+  font-size: 1rem;
+  color: #d1d5db;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.25rem;
+  }
+}
