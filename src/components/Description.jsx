@@ -19,7 +19,11 @@ function Description({ children, textAlign, isMarginPresent = true }) {
       break;
   }
 
-  return <p className={`${styles.description} ${marginClass}`}>{children}</p>;
+  return (
+    <p className={`${styles.description} ${textAlignClass} ${marginClass}`}>
+      {children}
+    </p>
+  );
 }
 
 Description.propTypes = {
