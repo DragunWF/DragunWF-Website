@@ -55,7 +55,6 @@ function IntroCard({
     </svg>
   );
 
-  // TODO: Separate this card into something else and replace name with title.
   return (
     <Card>
       <Title>{name}</Title>
