@@ -1,5 +1,5 @@
 .card {
-  background: #ffffff;
+  background: #1f2937;
   border-radius: 16px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -7,7 +7,7 @@
   max-width: 600px;
   margin: 1rem;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #374151;
   opacity: 0.8;
 }
 
@@ -24,14 +24,14 @@
 .name {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #f9fafb;
   margin: 0 0 0.75rem 0;
   line-height: 1.2;
 }
 
 .description {
   font-size: 1rem;
-  color: #6b7280;
+  color: #d1d5db;
   margin: 0 0 1.5rem 0;
   line-height: 1.5;
 }
@@ -49,9 +49,9 @@
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  background: #f3f4f6;
+  background: #374151;
   border-radius: 50%;
-  color: #6b7280;
+  color: #d1d5db;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
@@ -65,32 +65,6 @@
 .socialIcon svg {
   width: 1.25rem;
   height: 1.25rem;
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .card {
-    background: #1f2937;
-    border-color: #374151;
-  }
-
-  .name {
-    color: #f9fafb;
-  }
-
-  .description {
-    color: #d1d5db;
-  }
-
-  .socialIcon {
-    background: #374151;
-    color: #d1d5db;
-  }
-
-  .socialIcon:hover {
-    background: #3b82f6;
-    color: #ffffff;
-  }
 }
 
 /* Responsive design */
