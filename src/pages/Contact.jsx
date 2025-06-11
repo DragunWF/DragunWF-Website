@@ -1,10 +1,13 @@
+import { useState } from "react";
 import styles from "./Contact.module.css";
 import Card from "../components/Card";
 import Title from "../components/Title";
 import Description from "../components/Description";
 
 function Contact() {
-  function handleFormSubmission() {}
+  const [message, setMessage] = useState("");
+  const maxCharacterLength = 2500;
+  const minCharacterLength = 15;
 
   return (
     <div className={styles.wrapper}>
@@ -24,10 +27,24 @@ function Contact() {
         >
           <textarea
             className={styles.textarea}
+            placeholder="Enter any message..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             name="message"
             rows="8"
+            maxLength={maxCharacterLength}
+            minLength={minCharacterLength}
+            required
           ></textarea>
-          <button type="submit">Send Message</button>
+          <div className={styles.characterLimitWrapper}>
+            <span className={styles.characterLimitText}>
+              {message.length}/{maxCharacterLength} Characters
+            </span>
+          </div>
+
+          <button className={styles.submitButton} type="submit">
+            Send Message
+          </button>
         </form>
       </Card>
     </div>

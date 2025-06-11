@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
@@ -34,4 +34,20 @@
   resize: none;
   padding: 0.5rem;
   width: 100%;
+}
+
+.characterLimitWrapper {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+}
+
+.characterLimitText {
+  text-align: right;
+  font-size: 0.65rem;
+}
+
+.submitButton {
+  margin-top: 0.85rem;
+  width: 90%;
 }
