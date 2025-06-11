@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LayeredBackground } from "animated-backgrounds";
 import Homepage from "./pages/Homepage";
-import Contact from "./pages/Contact";
+import AnonymousMessage from "./pages/AnonymousMessage";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
 import ApologyPage from "./pages/ApologyPage";
@@ -36,9 +36,9 @@ function App() {
 
       <Routes>
         <Route index element={<Homepage />} />
-        <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="anonymous-message" element={<AnonymousMessage />} />
         <Route path="*" element={<ApologyPage />} />
       </Routes>
     </BrowserRouter>

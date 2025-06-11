@@ -10,7 +10,7 @@ const Navigation = () => {
     { path: "/", label: "Home" },
     { path: "/about", label: "About" },
     { path: "/blog", label: "Blog" },
-    { path: "/contact", label: "Contact" },
+    { path: "/anonymous-message", label: "Message" },
   ];
 
   const toggleMenu = () => {

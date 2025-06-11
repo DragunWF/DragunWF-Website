@@ -1,10 +1,10 @@
 import { useState } from "react";
-import styles from "./Contact.module.css";
+import styles from "./AnonymousMessage.module.css";
 import Card from "../components/Card";
 import Title from "../components/Title";
 import Description from "../components/Description";
 
-function Contact() {
+function AnonymousMessage() {
   const [message, setMessage] = useState("");
   const maxCharacterLength = 2500;
   const minCharacterLength = 15;
@@ -51,4 +51,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default AnonymousMessage;
