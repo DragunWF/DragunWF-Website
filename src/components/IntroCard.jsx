@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./IntroCard.module.css";
 import Card from "./Card";
 import Description from "./Description";
@@ -129,5 +130,11 @@ function IntroCard({
     </Card>
   );
 }
+
+IntroCard.propTypes = {
+  name: PropTypes.string,
+  description: PropTypes.string,
+  socialLinks: PropTypes.object,
+};
 
 export default IntroCard;

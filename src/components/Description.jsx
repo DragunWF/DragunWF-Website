@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./Description.module.css";
 
 function Description({ children, textAlign, isMarginPresent = true }) {
@@ -20,5 +21,11 @@ function Description({ children, textAlign, isMarginPresent = true }) {
 
   return <p className={`${styles.description} ${marginClass}`}>{children}</p>;
 }
+
+Description.propTypes = {
+  children: PropTypes.node,
+  textAlign: PropTypes.string,
+  isMarginPresent: PropTypes.bool,
+};
 
 export default Description;
