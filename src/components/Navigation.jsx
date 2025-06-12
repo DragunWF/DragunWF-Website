@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import styles from "./Navigation.module.css";
 
 const Navigation = () => {
@@ -25,14 +25,14 @@ const Navigation = () => {
     <nav className={styles.navbar}>
       <div className={styles.navContainer}>
         {/* Logo/Brand */}
-        <Link to="/" className={styles.navLogo} onClick={closeMenu}>
+        <NavLink to="/" className={styles.navLogo} onClick={closeMenu}>
           DragunWF
-        </Link>
+        </NavLink>
 
         {/* Desktop Menu */}
         <div className={styles.navMenu}>
           {navItems.map((item) => (
-            <Link
+            <NavLink
               key={item.path}
               to={item.path}
               className={`${styles.navLink} ${
@@ -40,7 +40,7 @@ const Navigation = () => {
               }`}
             >
               {item.label}
-            </Link>
+            </NavLink>
           ))}
         </div>
 
@@ -60,7 +60,7 @@ const Navigation = () => {
         className={`${styles.mobileMenu} ${isMenuOpen ? styles.active : ""}`}
       >
         {navItems.map((item) => (
-          <Link
+          <NavLink
             key={item.path}
             to={item.path}
             className={`${styles.mobileLink} ${
@@ -69,7 +69,7 @@ const Navigation = () => {
             onClick={closeMenu}
           >
             {item.label}
-          </Link>
+          </NavLink>
         ))}
       </div>
     </nav>
