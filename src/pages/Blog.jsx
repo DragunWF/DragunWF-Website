@@ -75,6 +75,8 @@ function Blog() {
             <BlogCard
               title={blog.title}
               description={blog.content}
+              dateCreated={blog.dateCreated}
+              dateUpdated={blog.dateUpdated}
               postId={blog.id}
               key={blog.id}
             />
