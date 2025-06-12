@@ -11,25 +11,51 @@ import Loader from "../components/Loader";
 const baseUrl = "http://localhost:9000/blogs";
 
 function Blog() {
+  const blogPostsPerPage = 3;
+
   const [blogs, setBlogs] = useState([]);
+  const [visibleBlogs, setVisibleBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(function () {
-    async function fetchBlogs() {
-      try {
-        setIsLoading(true);
-        const res = await fetch(baseUrl);
-        const data = await res.json();
-        setBlogs(data);
-      } catch (err) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
+  function handleUpdateCurrentPage(pageCount) {
+    setCurrentPage(pageCount);
+    setVisibleBlogs(() => blogs[currentPage - 1]);
+  }
+
+  useEffect(
+    function () {
+      async function fetchBlogs() {
+        try {
+          setIsLoading(true);
+          const res = await fetch(baseUrl);
+          const data = await res.json();
+
+          let postContainers = [];
+          let PostsInOnePage = [];
+          for (let i = 0, blogCount = 1; i < data.length; i++, blogCount++) {
+            PostsInOnePage.push(data[i]);
+            if (blogCount % blogPostsPerPage === 0) {
+              postContainers.push([...PostsInOnePage]);
+              PostsInOnePage = [];
+            }
+          }
+
+          setBlogs(postContainers);
+          setVisibleBlogs(
+            postContainers.length > 0 ? postContainers[currentPage - 1] : []
+          );
+        } catch (err) {
+          setIsError(true);
+        } finally {
+          setIsLoading(false);
+        }
       }
-    }
-    fetchBlogs();
-  }, []);
+      fetchBlogs();
+    },
+    [currentPage]
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -44,7 +70,7 @@ function Blog() {
         </Card>
       )}
       {!isError &&
-        blogs.map((blog) => {
+        visibleBlogs.map((blog) => {
           return (
             <BlogCard
               title={blog.title}
@@ -53,7 +79,22 @@ function Blog() {
             />
           );
         })}
-      {blogs.length > 0 && <BlogPagination />}
+      {!isError && blogs.length > 0 && (
+        <BlogPagination
+          currentPage={currentPage}
+          updateCurrentPage={handleUpdateCurrentPage}
+          maxPageCount={blogs.length}
+        />
+      )}
+      {!isError && blogs.length === 0 && (
+        <Card>
+          <Title>Blogs Coming Soon</Title>
+          <Description>
+            There are currently no blogs yet. Stay tuned as I will be adding
+            blog posts here in the future.
+          </Description>
+        </Card>
+      )}
     </div>
   );
 }
