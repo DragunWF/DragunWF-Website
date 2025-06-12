@@ -1,17 +1,17 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import styles from "./BlogPagination.module.css";
 import Card from "./Card";
 
-function Pagination() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const maxPageCount = 5;
+function Pagination({ currentPage, updateCurrentPage, maxPageCount }) {
+  const [currentPageCount, setCurrentPageCount] = useState(currentPage);
 
   function handlePreviousButtonClick() {
-    updatePageCount(currentPage - 1);
+    updatePageCount(currentPageCount - 1);
   }
 
   function handleNextButtonClick() {
-    updatePageCount(currentPage + 1);
+    updatePageCount(currentPageCount + 1);
   }
 
   function updatePageCount(updatedCount) {
@@ -20,7 +20,8 @@ function Pagination() {
     } else if (updatedCount <= 0) {
       updatedCount = maxPageCount;
     }
-    setCurrentPage(updatedCount);
+    setCurrentPageCount(updatedCount);
+    updateCurrentPage(updatedCount);
   }
 
   return (
@@ -28,12 +29,18 @@ function Pagination() {
       <div className={styles.wrapper}>
         <button onClick={handlePreviousButtonClick}>Previous</button>
         <p className={styles.paginationText}>
-          Page {currentPage} out of {maxPageCount}
+          Page {currentPageCount} out of {maxPageCount}
         </p>
         <button onClick={handleNextButtonClick}>Next</button>
       </div>
     </Card>
   );
 }
+
+Pagination.propTypes = {
+  currentPage: PropTypes.number,
+  updateCurrentPage: PropTypes.func,
+  maxPageCount: PropTypes.number,
+};
 
 export default Pagination;

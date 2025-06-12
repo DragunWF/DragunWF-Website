@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  gap: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.blogText {
+  text-align: justify;
+  width: 100%;
+  max-width: 800px;
+}
+
+.blogText p {
+  text-align: justify;
+  margin-bottom: 1em;
+}
+
+.backButton {
+  width: 60%;
+  margin-top: 0.85rem;
+}

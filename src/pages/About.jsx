@@ -9,42 +9,88 @@ function About() {
       <Card>
         <Title>Hobbies & Interests</Title>
         <Description textAlign="justify">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque odit,
-          cupiditate blanditiis quis debitis provident? Expedita, quam non.
-          Repellat accusantium quisquam maiores accusamus, provident aliquam,
-          omnis commodi voluptatum repellendus nulla sequi quod perspiciatis
-          veniam nemo velit nostrum sapiente unde vero ullam dolores ipsam hic.
-          Ut fugiat officiis exercitationem aspernatur corrupti?
+          Hallo! I’ve been programming since my Junior High School days,
+          initially drawn to game development, the spark that first ignited my
+          interest in code. Over time, I gradually expanded my skills into web
+          and mobile development, backend systems, and automation tools like
+          Discord bots and utility programs. You can explore many of these
+          projects on my{" "}
+          <a
+            href="https://github.com/DragunWF"
+            rel="noreferrer"
+            target="_blank"
+          >
+            GitHub profile
+          </a>
+          .
         </Description>
         <Description textAlign="justify">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
-          voluptate aperiam est inventore nisi, qui mollitia quibusdam fuga
-          vitae atque ab! Iusto quia ex id dignissimos beatae maiores, at
-          explicabo assumenda atque laboriosam, cum vero reprehenderit iste
-          ipsam sit adipisci neque. Eligendi incidunt possimus nihil eius
-          assumenda laboriosam deleniti itaque!
+          Beyond coding, I’m an avid reader with a particular fondness for books
+          on self-improvement, productivity, and software craftsmanship. Works
+          like <i>Atomic Habits</i>, <i>Deep Work</i>, and{" "}
+          <i>The Pragmatic Programmer</i> have profoundly shaped my mindset and
+          daily practices. I also maintain a personal journal, where I reflect
+          on new concepts, insights from books, and lessons from everyday
+          experiences.
         </Description>
       </Card>
+
       <Card>
         <Title>Hackathons</Title>
         <Description textAlign="justify">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi nemo
-          eius at provident sed quisquam. Minima magni eum officia temporibus,
-          fugit harum rem vel laudantium sit numquam aut. Repellendus deserunt
-          asperiores mollitia quas ducimus nostrum et delectus totam? Sint,
-          tempore? Fugit reiciendis non ut dolor, quas consequatur dolore nobis
-          rem.
+          I have a deep appreciation for hackathons and game jams — fast-paced
+          environments that challenge creativity, problem-solving, and teamwork
+          under pressure. Every event feels like an exhilarating adventure,
+          filled with unforgettable moments and new connections.
         </Description>
-      </Card>
-      <Card>
-        <Title>Passion for Programming</Title>
         <Description textAlign="justify">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-          velit magnam ratione pariatur veritatis esse mollitia architecto
-          molestiae placeat ad. Dolorum quis repudiandae inventore numquam a
-          necessitatibus blanditiis neque labore?
+          Over the years, I’ve competed in numerous hackathons and national
+          competitions. One highlight was the{" "}
+          <i>Tagisan ng Talino 2025: Codefest National Level</i>, an annual
+          mobile development competition hosted by STI College. To reach the
+          national stage, teams must first become champions at both the local
+          and cluster levels, a challenge I was fortunate to achieve, earning
+          the chance to travel and compete across the country.
+        </Description>
+        <Description textAlign="justify">
+          These experiences have taken me to various places and introduced me to
+          brilliant minds along the way. You can discover more about the other
+          hackathons I’ve joined on my{" "}
+          <a
+            href="https://www.linkedin.com/in/marc-plarisan/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            LinkedIn profile
+          </a>
+          .
         </Description>
       </Card>
+
+      <Card>
+        <Title>Passion for Learning</Title>
+        <Description textAlign="justify">
+          I like to think of learning as a way of leveling up, much like in
+          video games, where the character I’m developing is myself. While
+          software development is my primary craft, I also enjoy exploring other
+          fields such as public speaking, mathematics, communication, reading,
+          and writing.
+        </Description>
+        <Description textAlign="justify">
+          Each task or responsibility in my daily routine feels like a quest
+          objective, offering the chance to improve a skill or attribute.
+          Hackathons and events, to me, are like cooperative dungeon raids,
+          challenging yet rewarding experiences that grant valuable knowledge
+          and personal growth.
+        </Description>
+        <Description textAlign="justify">
+          Even everyday items like my keyboard, clothes, or bags feel like
+          in-game equipment, each with its own unique value and story. Whether
+          earned through effort, gifted, or chosen with care, they’re part of my
+          ongoing adventure toward continuous self-improvement.
+        </Description>
+      </Card>
+
       <span className={styles.bottomSpacing}></span>
     </div>
   );

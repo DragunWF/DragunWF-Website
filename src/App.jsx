@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Blog from "./pages/Blog";
 import ApologyPage from "./pages/ApologyPage";
 import Navigation from "./components/Navigation";
+import BlogPost from "./components/BlogPost";
 
 function App() {
   const animatedBackgroundLayers = [
@@ -38,6 +39,7 @@ function App() {
         <Route index element={<Homepage />} />
         <Route path="about" element={<About />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="blog/:id" element={<BlogPost />} />
         <Route path="anonymous-message" element={<AnonymousMessage />} />
         <Route path="*" element={<ApologyPage />} />
       </Routes>
