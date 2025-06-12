@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  gap: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.blogText {
+  text-align: justify;
+  width: 100%;
+  max-width: 800px; /* Optional: Set a max-width for better readability */
+}
+
+/* Add this to target Markdown paragraphs specifically */
+.blogText p {
+  text-align: justify;
+  margin-bottom: 1em;
+}

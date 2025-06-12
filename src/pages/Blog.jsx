@@ -75,7 +75,8 @@ function Blog() {
             <BlogCard
               title={blog.title}
               description={blog.content}
-              key={blog.title}
+              postId={blog.id}
+              key={blog.id}
             />
           );
         })}

@@ -4,8 +4,9 @@ import styles from "./BlogCard.module.css";
 import Card from "./Card";
 import Title from "./Title";
 import Description from "./Description";
+import { Link } from "react-router-dom";
 
-function BlogCard({ title, description }) {
+function BlogCard({ title, description, postId }) {
   const rawDescription = removeMd(description);
   const maxCharacterDisplayCount = 250;
 
@@ -22,7 +23,9 @@ function BlogCard({ title, description }) {
       <Description textAlign="justify">
         {trimDescription(rawDescription)}
       </Description>
-      <button className={styles.viewBlogButton}>View Full Blog</button>
+      <Link to={`${postId}`}>
+        <button className={styles.viewBlogButton}>View Full Blog</button>
+      </Link>
       <div className={styles.datesWrapper}>
         <span>Created: May 15, 2025</span>
         <span>Updated: June 6, 2025</span>
@@ -34,6 +37,7 @@ function BlogCard({ title, description }) {
 BlogCard.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
+  postId: PropTypes.number,
 };
 
 export default BlogCard;
