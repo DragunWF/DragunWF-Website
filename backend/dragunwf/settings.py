@@ -24,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0v@!wg4hea75tj!dxkk94rx*ojpy9g0&j+tycn+n-k@0%3@)$!'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["dragunwf.pythonanywhere.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -130,6 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# For production (PythonAnywhere)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Material UI
 # https://pypi.org/project/django-material-admin/
