@@ -1,36 +1,42 @@
 {
   "blogs": [
     {
+      "id": 1,
       "title": "The Future of Remote Work",
       "content": "Remote work has fundamentally changed how we approach **productivity** and *collaboration*. Companies are discovering that flexible work arrangements can lead to:\n\n- Increased employee satisfaction\n- Better work-life balance\n- Reduced overhead costs\n\nMany organizations are now implementing `hybrid models` that combine the best of both worlds. Employees can enjoy the comfort of working from home while still maintaining face-to-face connections with their colleagues.\n\n> The key to successful remote work lies in establishing clear communication channels and maintaining regular check-ins.\n\nTools like video conferencing, project management software, and instant messaging platforms have become **essential** for keeping teams connected. As we move forward, it's clear that remote work isn't just a temporary solution—it's a permanent shift in how we think about the workplace.",
       "dateCreated": "March 15, 2024",
       "dateUpdated": "April 2, 2024"
     },
     {
+      "id": 2,
       "title": "Sustainable Living on a Budget",
       "content": "Living sustainably doesn't have to **break the bank**. There are countless ways to reduce your environmental impact while saving money at the same time.\n\n*Simple changes to get started:*\n- Switch to LED light bulbs\n- Use reusable water bottles\n- Buy second-hand clothing\n\nThese small adjustments can add up to significant savings over time.\n\nGrowing your own herbs and vegetables is another excellent way to save money while reducing your `carbon footprint`. Even a small windowsill garden can provide fresh ingredients for your meals.\n\n> Consider walking, biking, or using public transportation instead of driving when possible.\n\nNot only will you save on gas and parking, but you'll also get some exercise and reduce air pollution.",
       "dateCreated": "January 8, 2024",
       "dateUpdated": "January 8, 2024"
     },
     {
+      "id": 3,
       "title": "The Art of Mindful Cooking",
       "content": "Cooking can be more than just preparing food—it can be a form of **meditation** and *self-care*. When we approach cooking mindfully, we transform a daily chore into a moment of peace and creativity.\n\nStart by focusing on the sensory experience:\n- The sound of vegetables sizzling in the pan\n- The aroma of herbs and spices\n- The vibrant colors of fresh ingredients\n\nThis awareness brings us into the present moment.\n\nTake time to appreciate where your food comes from. Consider the farmers who grew your vegetables, the journey from `farm to table`, and the nourishment you're providing for yourself and your loved ones.\n\n> Cooking mindfully also means slowing down and savoring the process.\n\nThere's no need to rush—embrace the rhythm of chopping, stirring, and seasoning as a form of **moving meditation**.",
       "dateCreated": "May 22, 2024",
       "dateUpdated": "June 5, 2024"
     },
     {
+      "id": 4,
       "title": "Building Stronger Communities",
       "content": "Strong communities don't happen by accident—they're built through **intentional actions** and genuine connections between neighbors. In our increasingly digital world, fostering *real-world relationships* has become more important than ever.\n\nOne of the simplest ways to strengthen your community is by getting to know your neighbors. Simple gestures make a difference:\n- A friendly wave\n- A brief conversation\n- Offering to help with groceries\n\nThese actions can go a long way in building `trust and connection`.\n\nParticipating in local events, volunteering for community organizations, and supporting local businesses are all ways to invest in your neighborhood's well-being. These activities create a **ripple effect** of positive change.\n\n> Remember that building community is a long-term commitment.\n\nIt requires patience, empathy, and a willingness to show up consistently for others, even when it's inconvenient.",
       "dateCreated": "February 14, 2024",
       "dateUpdated": "March 1, 2024"
     },
     {
+      "id": 5,
       "title": "The Power of Morning Routines",
       "content": "How you start your morning sets the tone for your **entire day**. A well-crafted morning routine can boost productivity, reduce stress, and improve overall well-being.\n\nThe key is to create a routine that works for your `lifestyle and personality`. Some people thrive with:\n- Early morning workouts\n- Quiet meditation sessions\n- Journaling and reflection\n\nThe important thing is *consistency*.\n\nConsider incorporating activities that nourish your mind, body, and spirit. This might include reading, stretching, enjoying a cup of coffee in silence, or spending a few minutes in gratitude.\n\n> Remember that your morning routine doesn't have to be elaborate or time-consuming.\n\nEven **15-20 minutes** of intentional morning activities can make a significant difference in how you feel throughout the day.",
       "dateCreated": "April 18, 2024",
       "dateUpdated": "May 10, 2024"
     },
     {
+      "id": 6,
       "title": "Digital Minimalism in Practice",
       "content": "In our hyperconnected world, **digital minimalism** offers a path to reclaim our attention and focus on what truly matters. It's not about rejecting technology entirely, but about using it more *intentionally*.\n\nStart by conducting a `digital audit`. Review your apps, subscriptions, and online habits. Ask yourself important questions:\n- Does this technology add value to my life?\n- Does it simply consume my time and attention?\n- Am I in control, or is it controlling me?\n\nCreate **tech-free zones** in your home and schedule regular digital detoxes. This might mean putting your phone in another room during meals or designating the bedroom as a screen-free space.\n\n> The goal isn't to live like a hermit, but to ensure that technology serves you rather than the other way around.\n\nWhen we're more selective about our digital consumption, we create space for deeper relationships, creativity, and personal growth.",
       "dateCreated": "December 3, 2023",
