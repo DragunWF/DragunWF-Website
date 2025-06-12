@@ -5,10 +5,21 @@ import Title from "./Title";
 import Description from "./Description";
 
 function BlogCard({ title, description }) {
+  const maxCharacterDisplayCount = 200;
+
+  function trimDescription(description) {
+    if (description <= maxCharacterDisplayCount) {
+      return description;
+    }
+    return `${description.substring(0, maxCharacterDisplayCount)}...`;
+  }
+
   return (
     <Card>
       <Title>{title}</Title>
-      <Description textAlign="justify">{description}</Description>
+      <Description textAlign="justify">
+        {trimDescription(description)}
+      </Description>
       <button className={styles.viewBlogButton}>View Full Blog</button>
       <div className={styles.datesWrapper}>
         <span>Created: May 15, 2025</span>
