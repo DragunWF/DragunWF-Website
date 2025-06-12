@@ -11,6 +11,7 @@ python-dotenv = "==1.1.0"
 pymongo = "==3.12.3"
 gunicorn = "==21.2.0"
 whitenoise = "==6.6.0"
+django-cors-headers = "==4.3.1"
 
 [dev-packages]
 
