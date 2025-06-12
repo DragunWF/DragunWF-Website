@@ -33,12 +33,12 @@ function Blog() {
           const data = await res.json();
 
           let postContainers = [];
-          let PostsInOnePage = [];
+          let postsInOnePage = [];
           for (let i = 0, blogCount = 1; i < data.length; i++, blogCount++) {
-            PostsInOnePage.push(data[i]);
+            postsInOnePage.push(data[i]);
             if (blogCount % blogPostsPerPage === 0) {
-              postContainers.push([...PostsInOnePage]);
-              PostsInOnePage = [];
+              postContainers.push([...postsInOnePage]);
+              postsInOnePage = [];
             }
           }
 
