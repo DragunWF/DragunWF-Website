@@ -1,8 +1,9 @@
-# React + Vite
+# DragunWF Personal Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📖 About
 
-Currently, two official plugins are available:
+This is my personal website — a space where you can explore my projects, hobbies, blog entries, and get in touch. Furthermore, it also features an option to send me anonymous messages!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🌐 Live Site
+
+👉 [https://dragunwf.vercel.app/](https://dragunwf.vercel.app/)
