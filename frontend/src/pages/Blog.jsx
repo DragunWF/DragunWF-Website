@@ -89,7 +89,7 @@ function Blog() {
           maxPageCount={blogs.length}
         />
       )}
-      {!isError && blogs.length === 0 && (
+      {!isError && !isLoading && blogs.length === 0 && (
         <Card>
           <Title>Blogs Coming Soon</Title>
           <Description>
