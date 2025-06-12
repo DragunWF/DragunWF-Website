@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 djongo = "*"
+django-material-admin = "==1.8.6"
 
 [dev-packages]
 

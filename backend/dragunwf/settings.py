@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'material',
+    'material.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -118,3 +119,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Material UI
+# https://pypi.org/project/django-material-admin/
+
+MATERIAL_ADMIN_SITE = {
+    'HEADER': 'DragunWF Admin Website',  # Admin site header
+    'TITLE': "Home",
+    'SHOW_THEMES': True,  # This enables theme selector
+}
