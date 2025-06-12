@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "./BlogPost.module.css";
 import Card from "./Card";
@@ -44,6 +44,9 @@ function BlogPost() {
             {currentBlog.content}
           </Markdown>
         </div>
+        <Link to="../blog">
+          <button className={styles.backButton}>Back</button>
+        </Link>
       </Card>
     </div>
   );

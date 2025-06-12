@@ -15,11 +15,15 @@
 .blogText {
   text-align: justify;
   width: 100%;
-  max-width: 800px; /* Optional: Set a max-width for better readability */
+  max-width: 800px;
 }
 
-/* Add this to target Markdown paragraphs specifically */
 .blogText p {
   text-align: justify;
   margin-bottom: 1em;
+}
+
+.backButton {
+  width: 60%;
+  margin-top: 0.85rem;
 }
