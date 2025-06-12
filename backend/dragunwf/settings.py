@@ -10,7 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,11 +77,18 @@ WSGI_APPLICATION = 'dragunwf.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+#
+PRODUCTION_DB = os.environ.get("PRODUCTION_DB_NAME")
+TEST_DB = os.environ.get("TEST_DB_NAME")
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': PRODUCTION_DB,
+        'CLIENT': {
+            'host': os.environ.get("DB_HOST"),
+            'username': os.environ.get("DB_USERNAME"),
+            'password': os.environ.get("DB_USER_PASSWORD"),
+        },
     }
 }
 
