@@ -1,15 +1,44 @@
 import styles from "./Blog.module.css";
-import Card from "../components/Card";
-import Description from "../components/Description";
-import Title from "../components/Title";
+import BlogCard from "../components/BlogCard";
 
 function Blog() {
   return (
     <div className={styles.wrapper}>
-      <Card>
-        <Title>Coming Soon....</Title>
-        <Description>Blog page is currently in development!</Description>
-      </Card>
+      <BlogCard
+        title="My Experience in Tagisan ng Talino 2025: Codefest National Level"
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+        molestiae alias perspiciatis sint ut quibusdam laudantium expedita vel
+        vero repudiandae rerum, reiciendis culpa deserunt ducimus vitae odit in!
+        Repellendus, neque."
+      />
+      <BlogCard
+        title="My Experience in Tagisan ng Talino 2025: Codefest National Level"
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+        molestiae alias perspiciatis sint ut quibusdam laudantium expedita vel
+        vero repudiandae rerum, reiciendis culpa deserunt ducimus vitae odit in!
+        Repellendus, neque."
+      />
+      <BlogCard
+        title="My Experience in Tagisan ng Talino 2025: Codefest National Level"
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+        molestiae alias perspiciatis sint ut quibusdam laudantium expedita vel
+        vero repudiandae rerum, reiciendis culpa deserunt ducimus vitae odit in!
+        Repellendus, neque."
+      />
+      <BlogCard
+        title="My Experience in Tagisan ng Talino 2025: Codefest National Level"
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+        molestiae alias perspiciatis sint ut quibusdam laudantium expedita vel
+        vero repudiandae rerum, reiciendis culpa deserunt ducimus vitae odit in!
+        Repellendus, neque."
+      />
+      <BlogCard
+        title="My Experience in Tagisan ng Talino 2025: Codefest National Level"
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+        molestiae alias perspiciatis sint ut quibusdam laudantium expedita vel
+        vero repudiandae rerum, reiciendis culpa deserunt ducimus vitae odit in!
+        Repellendus, neque."
+      />
     </div>
   );
 }

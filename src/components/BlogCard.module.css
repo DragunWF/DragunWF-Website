@@ -1,0 +1,17 @@
+.datesWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 5rem;
+  margin-top: 15px;
+}
+
+.datesWrapper span {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.viewBlogButton {
+  width: 60%;
+}
