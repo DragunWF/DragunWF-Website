@@ -31,8 +31,10 @@ function Blog() {
           setIsError(false);
 
           const res = await fetch(blogPostApiUrl);
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
           const data = await res.json();
-          console.log(data);
 
           let postPageChunks = [];
           let postsInOnePage = [];
