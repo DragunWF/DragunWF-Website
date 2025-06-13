@@ -5,7 +5,8 @@ from .models import BlogPost, Message
 class BlogPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPost
-        fields = ['id', 'title', 'description', 'date_created', 'date_updated']
+        fields = ['id', 'title', "image_link",
+                  'description', 'date_created', 'date_updated']
 
 
 class MessageSerializer(serializers.ModelSerializer):
