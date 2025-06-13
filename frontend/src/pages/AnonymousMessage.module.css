@@ -51,3 +51,11 @@
   margin-top: 0.85rem;
   width: 90%;
 }
+
+.successMessage {
+  color: #16a34a;
+}
+
+.errorMessage {
+  color: #dc2626;
+}
