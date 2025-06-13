@@ -4,12 +4,14 @@ import { socialLinks } from "../helpers/linkUtils";
 import Card from "../components/Card";
 import Description from "../components/Description";
 import Title from "../components/Title";
+import Image from "../components/Image";
 
 function About() {
   return (
     <div className={styles.wrapper}>
       <Card>
         <Title>Hobbies & Interests</Title>
+        <Image src="/banner.webp" />
         <Description textAlign="justify">
           Hallo! I’ve been programming since my Junior High School days,
           initially drawn to game development, the spark that first ignited my
@@ -19,6 +21,10 @@ function About() {
           projects on my{" "}
           <a href={socialLinks.github} rel="noreferrer" target="_blank">
             GitHub profile
+          </a>{" "}
+          or{" "}
+          <a href={socialLinks.itchio} rel="noreferrer" target="_blank">
+            Itch.io profile
           </a>
           .
         </Description>
@@ -35,6 +41,7 @@ function About() {
 
       <Card>
         <Title>Hackathons</Title>
+        <Image src="hackathon.webp" />
         <Description textAlign="justify">
           I have a deep appreciation for hackathons and game jams — fast-paced
           environments that challenge creativity, problem-solving, and teamwork
@@ -46,9 +53,9 @@ function About() {
           competitions. One highlight was the{" "}
           <i>Tagisan ng Talino 2025: Codefest National Level</i>, an annual
           mobile development competition hosted by STI College. To reach the
-          national stage, teams must first become champions at both the local
-          and cluster levels, a challenge I was fortunate to achieve, earning
-          the chance to travel and compete across the country.
+          national stage, teams must first become champions of both the local
+          and cluster level hackathons, a challenge I was fortunate to achieve,
+          earning the chance to travel and compete across the country.
         </Description>
         <Description textAlign="justify">
           These experiences have taken me to various places and introduced me to
@@ -63,6 +70,7 @@ function About() {
 
       <Card>
         <Title>Passion for Learning</Title>
+        <Image src="/book-reader.webp" />
         <Description textAlign="justify">
           I like to think of learning as a way of leveling up, much like in
           video games, where the character I’m developing is myself. While
