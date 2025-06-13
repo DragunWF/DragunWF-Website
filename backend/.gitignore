@@ -1,6 +1,7 @@
 ### DragunWF ###
 dump
 /static
+/staticfiles
 
 # Created by https://www.gitignore.io
 
