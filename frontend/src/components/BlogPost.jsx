@@ -9,6 +9,7 @@ import Card from "./Card";
 import Title from "./Title";
 import Loader from "./Loader";
 import Description from "./Description";
+import Image from "./Image";
 
 function BlogPost() {
   const { postId } = useParams();
@@ -31,8 +32,6 @@ function BlogPost() {
           }
 
           const data = await res.json();
-          console.log(data);
-
           setCurrentBlog(data);
         } catch (err) {
           console.error(err);
@@ -78,6 +77,7 @@ function BlogPost() {
     <div className={styles.wrapper}>
       <Card maxWidthType="blog">
         <Title>{currentBlog.title}</Title>
+        {currentBlog.image_link && <Image src={currentBlog.image_link} />}
         <div className={styles.blogText}>
           <Markdown
             components={{

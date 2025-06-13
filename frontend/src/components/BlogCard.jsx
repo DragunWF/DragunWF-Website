@@ -6,9 +6,17 @@ import styles from "./BlogCard.module.css";
 import Card from "./Card";
 import Title from "./Title";
 import Description from "./Description";
+import Image from "./Image";
 import { formatDate } from "../helpers/formatters";
 
-function BlogCard({ title, description, dateCreated, dateUpdated, postId }) {
+function BlogCard({
+  postId,
+  title,
+  imageLink,
+  description,
+  dateCreated,
+  dateUpdated,
+}) {
   const rawDescription = removeMd(description);
   const maxCharacterDisplayCount = 250;
 
@@ -22,6 +30,7 @@ function BlogCard({ title, description, dateCreated, dateUpdated, postId }) {
   return (
     <Card>
       <Title>{title}</Title>
+      {imageLink && <Image src={imageLink} />}
       <Description textAlign="justify">
         {trimDescription(rawDescription)}
       </Description>
@@ -38,6 +47,7 @@ function BlogCard({ title, description, dateCreated, dateUpdated, postId }) {
 
 BlogCard.propTypes = {
   title: PropTypes.string.isRequired,
+  imageLink: PropTypes.string,
   description: PropTypes.string.isRequired,
   dateCreated: PropTypes.string.isRequired,
   dateUpdated: PropTypes.string.isRequired,

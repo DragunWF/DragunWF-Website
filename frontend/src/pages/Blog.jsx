@@ -107,6 +107,7 @@ function Blog() {
         return (
           <BlogCard
             title={blog.title}
+            imageLink={blog.image_link ? blog.image_link : ""}
             description={blog.description}
             dateCreated={blog.date_created}
             dateUpdated={blog.date_updated}
