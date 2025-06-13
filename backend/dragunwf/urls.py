@@ -17,8 +17,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import RedirectView
-
 from dragunwf.settings import DEBUG, STATIC_URL, STATIC_ROOT
+
+admin.site.site_header = "DragunWF Administration"
+admin.site.site_title = "DragunWF"
+admin.site.index_title = "Admin Portal"
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/admin/', permanent=False)),
