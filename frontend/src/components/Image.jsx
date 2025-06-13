@@ -5,7 +5,7 @@ function Image({ src }) {
   const pathNodes = src.split("/");
   let altName =
     pathNodes.length > 0 ? pathNodes[pathNodes.length - 1] : "Image";
-  return <img className={styles.dynamicImg} src={src} alt={altName}></img>;
+  return <img className={styles.dynamicImg} src={src} alt={altName} />;
 }
 
 Image.propTypes = {

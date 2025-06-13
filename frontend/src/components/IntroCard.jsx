@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { socialLinks } from "../helpers/linkUtils";
+import { socialLinks } from "../helpers/links";
 import styles from "./IntroCard.module.css";
 import Card from "./Card";
 import Description from "./Description";

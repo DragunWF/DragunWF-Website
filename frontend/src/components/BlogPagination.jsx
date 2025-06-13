@@ -30,7 +30,7 @@ function Pagination({ currentPage, updateCurrentPage, maxPageCount }) {
       <div className={styles.wrapper}>
         <button onClick={handlePreviousButtonClick}>Previous</button>
         <p className={styles.paginationText}>
-          Page {currentPageCount} out of {maxPageCount}
+          Page {currentPageCount} / {maxPageCount}
         </p>
         <button onClick={handleNextButtonClick}>Next</button>
       </div>

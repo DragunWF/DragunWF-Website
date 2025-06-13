@@ -3,8 +3,11 @@ import { useParams, Link } from "react-router-dom";
 import Markdown from "react-markdown";
 
 import styles from "./BlogPost.module.css";
-import { blogPostApiUrl } from "../helpers/linkUtils";
+import { blogPostApiUrl } from "../helpers/links";
+import { blogsKey } from "../helpers/localStorageKeys";
 import { formatDate } from "../helpers/formatters";
+import useCache from "../helpers/useCache";
+
 import Card from "./Card";
 import Title from "./Title";
 import Loader from "./Loader";
@@ -13,36 +16,69 @@ import Image from "./Image";
 
 function BlogPost() {
   const { postId } = useParams();
-  const [currentBlog, setCurrentBlog] = useState({});
+  const [currentBlog, setCurrentBlog] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const blogCache = useCache(blogsKey);
 
   useEffect(
     function () {
+      function getBlogById(blogArray, id) {
+        return blogArray.find((blog) => blog.id == id);
+      }
+
       async function fetchBlogPost() {
         try {
           setIsLoading(true);
-          setIsError(false); // Reset error state when starting new request
+          setIsError(false);
 
-          const res = await fetch(`${blogPostApiUrl}/${postId}`);
+          // First, try to get from cached blog list
+          let blogArray = blogCache.get();
 
-          // Check if the response is ok (status 200-299)
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
+          if (!blogArray) {
+            // Cache miss - fetch all blogs
+            const res = await fetch(blogPostApiUrl);
+            if (!res.ok) {
+              throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            blogArray = await res.json();
+            blogCache.set(blogArray);
           }
 
-          const data = await res.json();
-          setCurrentBlog(data);
+          // Find the specific blog post
+          const foundBlog = getBlogById(blogArray, postId);
+
+          if (!foundBlog) {
+            throw new Error(`Blog post with ID '${postId}' was not found!`);
+          }
+
+          setCurrentBlog(foundBlog);
         } catch (err) {
           console.error(err);
           setIsError(true);
+
+          // Fallback: try to use cached data even if expired
+          const fallbackData = localStorage.getItem(blogsKey);
+          if (fallbackData) {
+            try {
+              const blogArray = JSON.parse(fallbackData);
+              const foundBlog = getBlogById(blogArray, postId);
+              if (foundBlog) {
+                setCurrentBlog(foundBlog);
+                setIsError(false);
+              }
+            } catch (parseErr) {
+              console.error("Failed to parse cached data:", parseErr);
+            }
+          }
         } finally {
           setIsLoading(false);
         }
       }
+
       fetchBlogPost();
     },
-    [postId]
+    [postId, blogCache]
   );
 
   // Show loader
@@ -66,6 +102,24 @@ function BlogPost() {
           </Description>
           <Link to="../blog">
             <button className={styles.backButton}>Back</button>
+          </Link>
+        </Card>
+      </div>
+    );
+  }
+
+  // Show "not found" if no blog found
+  if (!currentBlog) {
+    return (
+      <div className={styles.wrapper}>
+        <Card>
+          <Title>Blog Post Not Found</Title>
+          <Description>
+            The blog post you’re looking for doesn’t exist or may have been
+            removed.
+          </Description>
+          <Link to="../blog">
+            <button className={styles.backButton}>Back to Blog</button>
           </Link>
         </Card>
       </div>
