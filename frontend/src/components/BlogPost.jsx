@@ -4,6 +4,7 @@ import Markdown from "react-markdown";
 
 import styles from "./BlogPost.module.css";
 import { blogPostApiUrl } from "../helpers/linkUtils";
+import { formatDate } from "../helpers/formatters";
 import Card from "./Card";
 import Title from "./Title";
 import Loader from "./Loader";
@@ -75,7 +76,7 @@ function BlogPost() {
   // Show blog post content
   return (
     <div className={styles.wrapper}>
-      <Card>
+      <Card maxWidthType="blog">
         <Title>{currentBlog.title}</Title>
         <div className={styles.blogText}>
           <Markdown
@@ -99,6 +100,10 @@ function BlogPost() {
           >
             {currentBlog.description}
           </Markdown>
+        </div>
+        <div className={styles.datesWrapper}>
+          <span>Created: {formatDate(currentBlog.date_created)}</span>
+          <span>Updated: {formatDate(currentBlog.date_updated)}</span>
         </div>
         <Link to="../blog">
           <button className={styles.backButton}>Back</button>

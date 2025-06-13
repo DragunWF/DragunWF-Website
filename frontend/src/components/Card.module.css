@@ -13,6 +13,14 @@
   animation: slideIn 0.3s ease-out forwards;
 }
 
+.maxWidthNormal {
+  max-width: 600px;
+}
+
+.maxWidthBlog {
+  max-width: 690px;
+}
+
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
