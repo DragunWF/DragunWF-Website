@@ -9,3 +9,7 @@ _Note: This isn’t a portfolio meant to showcase my work to employers. Sure, th
 ### 🌐 Live Site
 
 👉 [https://dragunwf.vercel.app/](https://dragunwf.vercel.app/)
+
+## 🌟 Banner
+
+![banner.png](frontend/public/banner.png)
