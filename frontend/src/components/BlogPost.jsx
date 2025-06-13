@@ -3,9 +3,9 @@ import { useParams, Link } from "react-router-dom";
 import Markdown from "react-markdown";
 
 import styles from "./BlogPost.module.css";
+import { blogPostApiUrl } from "../helpers/linkUtils";
 import Card from "./Card";
 import Title from "./Title";
-import { blogPostApiUrl } from "../helpers/linkUtils";
 import Loader from "./Loader";
 import Description from "./Description";
 
@@ -20,8 +20,15 @@ function BlogPost() {
       async function fetchBlogPost() {
         try {
           setIsLoading(true);
+          setIsError(false); // Reset error state when starting new request
 
           const res = await fetch(`${blogPostApiUrl}/${postId}`);
+
+          // Check if the response is ok (status 200-299)
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+
           const data = await res.json();
           console.log(data);
 
@@ -38,42 +45,19 @@ function BlogPost() {
     [postId]
   );
 
-  return (
-    <div className={styles.wrapper}>
-      {isLoading && !isError ? (
+  // Show loader
+  if (isLoading) {
+    return (
+      <div className={styles.wrapper}>
         <Loader />
-      ) : (
-        <Card>
-          <Title>{currentBlog.title}</Title>
-          <div className={styles.blogText}>
-            <Markdown
-              components={{
-                p: ({ node, ...props }) => (
-                  <p style={{ textAlign: "justify" }} {...props} />
-                ),
-                ul: ({ node, ...props }) => (
-                  <ul style={{ marginBottom: "16px" }} {...props} />
-                ),
-                ol: ({ node, ...props }) => (
-                  <ol style={{ marginBottom: "16px" }} {...props} />
-                ),
-                li: ({ node, ...props }) => (
-                  <li
-                    style={{ textAlign: "left", marginLeft: "20px" }}
-                    {...props}
-                  />
-                ),
-              }}
-            >
-              {currentBlog.description}
-            </Markdown>
-          </div>
-          <Link to="../blog">
-            <button className={styles.backButton}>Back</button>
-          </Link>
-        </Card>
-      )}
-      {isError && (
+      </div>
+    );
+  }
+
+  // Show error
+  if (isError) {
+    return (
+      <div className={styles.wrapper}>
         <Card>
           <Title>Something went wrong!</Title>
           <Description>
@@ -84,7 +68,42 @@ function BlogPost() {
             <button className={styles.backButton}>Back</button>
           </Link>
         </Card>
-      )}
+      </div>
+    );
+  }
+
+  // Show blog post content
+  return (
+    <div className={styles.wrapper}>
+      <Card>
+        <Title>{currentBlog.title}</Title>
+        <div className={styles.blogText}>
+          <Markdown
+            components={{
+              p: ({ node, ...props }) => (
+                <p style={{ textAlign: "justify" }} {...props} />
+              ),
+              ul: ({ node, ...props }) => (
+                <ul style={{ marginBottom: "16px" }} {...props} />
+              ),
+              ol: ({ node, ...props }) => (
+                <ol style={{ marginBottom: "16px" }} {...props} />
+              ),
+              li: ({ node, ...props }) => (
+                <li
+                  style={{ textAlign: "left", marginLeft: "20px" }}
+                  {...props}
+                />
+              ),
+            }}
+          >
+            {currentBlog.description}
+          </Markdown>
+        </div>
+        <Link to="../blog">
+          <button className={styles.backButton}>Back</button>
+        </Link>
+      </Card>
     </div>
   );
 }

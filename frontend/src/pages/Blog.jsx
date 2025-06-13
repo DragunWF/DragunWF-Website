@@ -28,26 +28,28 @@ function Blog() {
       async function fetchBlogs() {
         try {
           setIsLoading(true);
+          setIsError(false);
+
           const res = await fetch(blogPostApiUrl);
           const data = await res.json();
           console.log(data);
 
-          let postContainers = [];
+          let postPageChunks = [];
           let postsInOnePage = [];
           for (let i = 0, blogCount = 1; i < data.length; i++, blogCount++) {
             postsInOnePage.push(data[i]);
             if (blogCount % blogPostsPerPage === 0) {
-              postContainers.push([...postsInOnePage]);
+              postPageChunks.push([...postsInOnePage]);
               postsInOnePage = [];
             }
           }
           if (postsInOnePage.length > 0) {
-            postContainers.push([...postsInOnePage]);
+            postPageChunks.push([...postsInOnePage]);
           }
 
-          setBlogs(postContainers);
+          setBlogs(postPageChunks);
           setVisibleBlogs(
-            postContainers.length > 0 ? postContainers[currentPage - 1] : []
+            postPageChunks.length > 0 ? postPageChunks[currentPage - 1] : []
           );
         } catch (err) {
           console.error(err);
@@ -61,10 +63,17 @@ function Blog() {
     [currentPage]
   );
 
-  return (
-    <div className={styles.wrapper}>
-      {isLoading && <Loader />}
-      {isError && (
+  if (isLoading) {
+    return (
+      <div className={styles.wrapper}>
+        <Loader />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className={styles.wrapper}>
         <Card>
           <Title>Something went wrong!</Title>
           <Description>
@@ -72,28 +81,13 @@ function Blog() {
             try again later.
           </Description>
         </Card>
-      )}
-      {!isError &&
-        visibleBlogs.map((blog) => {
-          return (
-            <BlogCard
-              title={blog.title}
-              description={blog.description}
-              dateCreated={blog.date_created}
-              dateUpdated={blog.date_updated}
-              postId={blog.id}
-              key={blog.id}
-            />
-          );
-        })}
-      {!isError && blogs.length > 0 && (
-        <BlogPagination
-          currentPage={currentPage}
-          updateCurrentPage={handleUpdateCurrentPage}
-          maxPageCount={blogs.length}
-        />
-      )}
-      {!isError && !isLoading && blogs.length === 0 && (
+      </div>
+    );
+  }
+
+  if (blogs.length === 0) {
+    return (
+      <div className={styles.wrapper}>
         <Card>
           <Title>Blogs Coming Soon</Title>
           <Description>
@@ -101,7 +95,29 @@ function Blog() {
             blog posts here in the future.
           </Description>
         </Card>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.wrapper}>
+      {visibleBlogs.map((blog) => {
+        return (
+          <BlogCard
+            title={blog.title}
+            description={blog.description}
+            dateCreated={blog.date_created}
+            dateUpdated={blog.date_updated}
+            postId={blog.id}
+            key={blog.id}
+          />
+        );
+      })}
+      <BlogPagination
+        currentPage={currentPage}
+        updateCurrentPage={handleUpdateCurrentPage}
+        maxPageCount={blogs.length}
+      />
     </div>
   );
 }
