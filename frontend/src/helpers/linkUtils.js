@@ -1,4 +1,7 @@
-export const adminSiteUrl = "https://dashboard-dragunwf.onrender.com/admin";
+export const backendUrl = "https://dashboard-dragunwf.onrender.com";
+export const adminSiteUrl = `${backendUrl}/admin`;
+export const blogPostApiUrl = `${backendUrl}/api/blog_posts`;
+export const sendAnonymousMessageApiUrl = `${backendUrl}/api/send_anonymous_message`;
 export const socialLinks = {
   github: "https://github.com/DragunWF",
   linkedin: "https://www.linkedin.com/in/marc-plarisan",
