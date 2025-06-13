@@ -35,11 +35,11 @@ function BlogCard({ title, description, dateCreated, dateUpdated, postId }) {
 }
 
 BlogCard.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  dateCreated: PropTypes.string,
-  dateUpdated: PropTypes.string,
-  postId: PropTypes.number,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  dateCreated: PropTypes.string.isRequired,
+  dateUpdated: PropTypes.string.isRequired,
+  postId: PropTypes.number.isRequired,
 };
 
 export default BlogCard;

@@ -38,9 +38,9 @@ function Pagination({ currentPage, updateCurrentPage, maxPageCount }) {
 }
 
 Pagination.propTypes = {
-  currentPage: PropTypes.number,
-  updateCurrentPage: PropTypes.func,
-  maxPageCount: PropTypes.number,
+  currentPage: PropTypes.number.isRequired,
+  updateCurrentPage: PropTypes.func.isRequired,
+  maxPageCount: PropTypes.number.isRequired,
 };
 
 export default Pagination;

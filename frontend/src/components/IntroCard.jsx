@@ -131,8 +131,8 @@ function IntroCard({
 }
 
 IntroCard.propTypes = {
-  name: PropTypes.string,
-  description: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default IntroCard;
