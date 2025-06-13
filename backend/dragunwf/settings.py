@@ -162,14 +162,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Material UI
 # https://pypi.org/project/django-material-admin/
 
-MATERIAL_ADMIN_SITE = {
-    'HEADER': 'DragunWF Admin Website',  # Admin site header
-    'TITLE': "Home",
-    'SHOW_THEMES': True,  # This enables theme selector
-}
+# MATERIAL_ADMIN_SITE = {
+#     'HEADER': 'DragunWF Admin Website',  # Admin site header
+#     'TITLE': "Home",
+#     'SHOW_THEMES': True,  # This enables theme selector
+# }
