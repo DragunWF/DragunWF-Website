@@ -10,7 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,18 +24,49 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0v@!wg4hea75tj!dxkk94rx*ojpy9g0&j+tycn+n-k@0%3@)$!'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["dashboard.dragunwf.onrender.com", "localhost", "127.0.0.1"]
 
+# CORS Settings
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "https://dragunwf.vercel.app",
+]
+
+# CORS Headers
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'material',
+    'material.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -72,11 +107,18 @@ WSGI_APPLICATION = 'dragunwf.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+#
+PRODUCTION_DB = os.environ.get("PRODUCTION_DB_NAME")
+TEST_DB = os.environ.get("TEST_DB_NAME")
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': PRODUCTION_DB,
+        'CLIENT': {
+            'host': os.environ.get("DB_HOST"),
+            'username': os.environ.get("DB_USERNAME"),
+            'password': os.environ.get("DB_USER_PASSWORD"),
+        },
     }
 }
 
@@ -118,3 +160,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# For production (PythonAnywhere)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Material UI
+# https://pypi.org/project/django-material-admin/
+
+MATERIAL_ADMIN_SITE = {
+    'HEADER': 'DragunWF Admin Website',  # Admin site header
+    'TITLE': "Home",
+    'SHOW_THEMES': True,  # This enables theme selector
+}
