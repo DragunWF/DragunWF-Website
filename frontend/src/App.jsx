@@ -41,7 +41,7 @@ function App() {
         <Route index element={<Homepage />} />
         <Route path="about" element={<About />} />
         <Route path="blog" element={<Blog />} />
-        <Route path="blog/:id" element={<BlogPost />} />
+        <Route path="blog/:postId" element={<BlogPost />} />
         <Route path="anonymous-message" element={<AnonymousMessage />} />
         <Route
           path="/admin"
