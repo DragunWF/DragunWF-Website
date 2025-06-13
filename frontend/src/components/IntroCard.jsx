@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { socialLinks } from "../helpers/linkUtils";
 import styles from "./IntroCard.module.css";
 import Card from "./Card";
 import Description from "./Description";
@@ -7,14 +8,6 @@ import Title from "./Title";
 function IntroCard({
   name = "Default Name",
   description = "Default Description",
-  socialLinks = {
-    github: "",
-    linkedin: "",
-    itchio: "",
-    typeracer: "",
-    codewars: "",
-    steam: "",
-  },
 }) {
   const GitHubIcon = () => (
     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -138,9 +131,8 @@ function IntroCard({
 }
 
 IntroCard.propTypes = {
-  name: PropTypes.string,
-  description: PropTypes.string,
-  socialLinks: PropTypes.object,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default IntroCard;

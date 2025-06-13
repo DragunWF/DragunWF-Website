@@ -1,5 +1,7 @@
 # DragunWF Personal Website
 
+![banner.png](frontend/public/banner.png)
+
 ## 📖 About
 
 This is my personal website — a space where you can explore my projects, hobbies, blog entries, and get in touch. It also includes a feature to send me anonymous messages, just for fun.

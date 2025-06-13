@@ -3,9 +3,9 @@
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(31, 41, 55, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(229, 231, 235, 0.3);
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
   z-index: 1000;
   transition: all 0.3s ease;
 }
@@ -23,13 +23,13 @@
 .navLogo {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #f9fafb;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .navLogo:hover {
-  color: #3b82f6;
+  color: #60a5fa;
 }
 
 .navMenu {
@@ -39,7 +39,7 @@
 }
 
 .navLink {
-  color: #6b7280;
+  color: #d1d5db;
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 1rem;
@@ -49,13 +49,13 @@
 }
 
 .navLink:hover {
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.1);
 }
 
 .navLink.active {
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.1);
 }
 
 .navLink.active::after {
@@ -66,7 +66,7 @@
   transform: translateX(-50%);
   width: 0.5rem;
   height: 0.125rem;
-  background: #3b82f6;
+  background: #60a5fa;
   border-radius: 0.25rem;
 }
 
@@ -83,7 +83,7 @@
 .bar {
   width: 1.5rem;
   height: 0.125rem;
-  background: #6b7280;
+  background: #d1d5db;
   transition: all 0.3s ease;
   border-radius: 1px;
 }
@@ -106,9 +106,9 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(31, 41, 55, 0.98);
   backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(229, 231, 235, 0.3);
+  border-top: 1px solid rgba(75, 85, 99, 0.3);
   display: flex;
   flex-direction: column;
   max-height: 0;
@@ -121,7 +121,7 @@
 }
 
 .mobileLink {
-  color: #6b7280;
+  color: #d1d5db;
   text-decoration: none;
   font-weight: 500;
   padding: 1rem 1.5rem;
@@ -131,74 +131,15 @@
 }
 
 .mobileLink:hover {
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.05);
-  border-left-color: #3b82f6;
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.05);
+  border-left-color: #60a5fa;
 }
 
 .mobileLink.active {
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
-  border-left-color: #3b82f6;
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .navbar {
-    background: rgba(31, 41, 55, 0.95);
-    border-bottom-color: rgba(75, 85, 99, 0.3);
-  }
-
-  .navLogo {
-    color: #f9fafb;
-  }
-
-  .navLogo:hover {
-    color: #60a5fa;
-  }
-
-  .navLink {
-    color: #d1d5db;
-  }
-
-  .navLink:hover {
-    color: #60a5fa;
-    background: rgba(96, 165, 250, 0.1);
-  }
-
-  .navLink.active {
-    color: #60a5fa;
-    background: rgba(96, 165, 250, 0.1);
-  }
-
-  .navLink.active::after {
-    background: #60a5fa;
-  }
-
-  .bar {
-    background: #d1d5db;
-  }
-
-  .mobileMenu {
-    background: rgba(31, 41, 55, 0.98);
-    border-top-color: rgba(75, 85, 99, 0.3);
-  }
-
-  .mobileLink {
-    color: #d1d5db;
-  }
-
-  .mobileLink:hover {
-    color: #60a5fa;
-    background: rgba(96, 165, 250, 0.05);
-    border-left-color: #60a5fa;
-  }
-
-  .mobileLink.active {
-    color: #60a5fa;
-    background: rgba(96, 165, 250, 0.1);
-    border-left-color: #60a5fa;
-  }
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.1);
+  border-left-color: #60a5fa;
 }
 
 /* Responsive breakpoints */

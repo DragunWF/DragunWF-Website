@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import styles from "./Navigation.module.css";
 
-const Navigation = () => {
+function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -13,13 +13,13 @@ const Navigation = () => {
     { path: "/anonymous-message", label: "Message" },
   ];
 
-  const toggleMenu = () => {
+  function toggleMenu() {
     setIsMenuOpen(!isMenuOpen);
-  };
+  }
 
-  const closeMenu = () => {
+  function closeMenu() {
     setIsMenuOpen(false);
-  };
+  }
 
   return (
     <nav className={styles.navbar}>
@@ -74,6 +74,6 @@ const Navigation = () => {
       </div>
     </nav>
   );
-};
+}
 
 export default Navigation;

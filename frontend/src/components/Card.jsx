@@ -1,9 +1,22 @@
 import PropTypes from "prop-types";
 import styles from "./Card.module.css";
 
-function Card({ children }) {
+function Card({ children, maxWidthType = "normal" }) {
+  let maxWidthClass;
+  switch (maxWidthType) {
+    case "normal":
+      maxWidthClass = styles.maxWidthNormal;
+      break;
+    case "blog":
+      maxWidthClass = styles.maxWidthBlog;
+      break;
+    default:
+      maxWidthClass = styles.maxWidthNormal;
+      break;
+  }
+
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${maxWidthClass}`}>
       <div className={styles.content}>{children}</div>
     </div>
   );
@@ -11,6 +24,7 @@ function Card({ children }) {
 
 Card.propTypes = {
   children: PropTypes.node,
+  maxWidthType: PropTypes.string,
 };
 
 export default Card;
