@@ -5,7 +5,7 @@ class BlogPost(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=128)
     image_link = models.CharField(
-        max_length=255,
+        max_length=500,
         null=True,
         blank=True,
         default=""
