@@ -1,4 +1,5 @@
 import styles from "./About.module.css";
+import { socialLinks } from "../helpers/linkUtils";
 import Card from "../components/Card";
 import Description from "../components/Description";
 import Title from "../components/Title";
@@ -15,11 +16,7 @@ function About() {
           and mobile development, backend systems, and automation tools like
           Discord bots and utility programs. You can explore many of these
           projects on my{" "}
-          <a
-            href="https://github.com/DragunWF"
-            rel="noreferrer"
-            target="_blank"
-          >
+          <a href={socialLinks.github} rel="noreferrer" target="_blank">
             GitHub profile
           </a>
           .
@@ -56,11 +53,7 @@ function About() {
           These experiences have taken me to various places and introduced me to
           brilliant minds along the way. You can discover more about the other
           hackathons I’ve joined on my{" "}
-          <a
-            href="https://www.linkedin.com/in/marc-plarisan/"
-            rel="noreferrer"
-            target="_blank"
-          >
+          <a href={socialLinks.linkedin} rel="noreferrer" target="_blank">
             LinkedIn profile
           </a>
           .
