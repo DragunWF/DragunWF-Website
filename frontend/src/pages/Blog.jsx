@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { blogPostApiUrl } from "../helpers/linkUtils";
+
 import styles from "./Blog.module.css";
 import Card from "../components/Card";
 import Title from "../components/Title";
@@ -6,9 +8,6 @@ import Description from "../components/Description";
 import BlogCard from "../components/BlogCard";
 import BlogPagination from "../components/BlogPagination";
 import Loader from "../components/Loader";
-
-// for testing
-const baseUrl = "http://localhost:9000/blogs";
 
 function Blog() {
   const blogPostsPerPage = 3;
@@ -29,8 +28,9 @@ function Blog() {
       async function fetchBlogs() {
         try {
           setIsLoading(true);
-          const res = await fetch(baseUrl);
+          const res = await fetch(blogPostApiUrl);
           const data = await res.json();
+          console.log(data);
 
           let postContainers = [];
           let postsInOnePage = [];
@@ -41,12 +41,16 @@ function Blog() {
               postsInOnePage = [];
             }
           }
+          if (postsInOnePage.length > 0) {
+            postContainers.push([...postsInOnePage]);
+          }
 
           setBlogs(postContainers);
           setVisibleBlogs(
             postContainers.length > 0 ? postContainers[currentPage - 1] : []
           );
         } catch (err) {
+          console.error(err);
           setIsError(true);
         } finally {
           setIsLoading(false);
@@ -74,9 +78,9 @@ function Blog() {
           return (
             <BlogCard
               title={blog.title}
-              description={blog.content}
-              dateCreated={blog.dateCreated}
-              dateUpdated={blog.dateUpdated}
+              description={blog.description}
+              dateCreated={blog.date_created}
+              dateUpdated={blog.date_updated}
               postId={blog.id}
               key={blog.id}
             />

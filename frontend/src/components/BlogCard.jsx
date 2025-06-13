@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import removeMd from "remove-markdown";
+
 import styles from "./BlogCard.module.css";
 import Card from "./Card";
 import Title from "./Title";
 import Description from "./Description";
-import { Link } from "react-router-dom";
+import { formatDate } from "../helpers/formatters";
 
 function BlogCard({ title, description, dateCreated, dateUpdated, postId }) {
   const rawDescription = removeMd(description);
@@ -27,8 +29,8 @@ function BlogCard({ title, description, dateCreated, dateUpdated, postId }) {
         <button className={styles.viewBlogButton}>View Full Blog</button>
       </Link>
       <div className={styles.datesWrapper}>
-        <span>Created: {dateCreated}</span>
-        <span>Updated: {dateUpdated}</span>
+        <span>Created: {formatDate(dateCreated)}</span>
+        <span>Updated: {formatDate(dateUpdated)}</span>
       </div>
     </Card>
   );
