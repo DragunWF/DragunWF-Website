@@ -56,8 +56,6 @@ CORS_ALLOWED_HEADERS = [
 # Application definition
 
 INSTALLED_APPS = [
-    # 'material',
-    # 'material.admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -159,12 +157,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Material UI
-# https://pypi.org/project/django-material-admin/
-
-# MATERIAL_ADMIN_SITE = {
-#     'HEADER': 'DragunWF Admin Website',  # Admin site header
-#     'TITLE': "Home",
-#     'SHOW_THEMES': True,  # This enables theme selector
-# }
