@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { blogPostApiUrl } from "../helpers/links";
 import { blogsKey } from "../helpers/localStorageKeys";
+import { getBlogPostPageChunks } from "../helpers/utils";
 
 import styles from "./Blog.module.css";
 import Card from "../components/Card";
@@ -41,7 +42,7 @@ function Blog() {
   const blogPostsPerPage = 3;
 
   // Initialize the cache hook
-  const blogCache = useCache(blogsKey, 6); // 6 hours expiration
+  const blogCache = useCache(blogsKey); // 6 hours expiration
 
   const [blogs, setBlogs] = useState([]);
   const [visibleBlogs, setVisibleBlogs] = useState([]);
@@ -78,18 +79,7 @@ function Blog() {
           }
 
           // Split blogs data for pagination
-          let postPageChunks = [];
-          let postsInOnePage = [];
-          for (let i = 0, blogCount = 1; i < data.length; i++, blogCount++) {
-            postsInOnePage.push(data[i]);
-            if (blogCount % blogPostsPerPage === 0) {
-              postPageChunks.push([...postsInOnePage]);
-              postsInOnePage = [];
-            }
-          }
-          if (postsInOnePage.length > 0) {
-            postPageChunks.push([...postsInOnePage]);
-          }
+          const postPageChunks = getBlogPostPageChunks(data, blogPostsPerPage);
 
           setBlogs(postPageChunks);
           setVisibleBlogs(
@@ -106,22 +96,10 @@ function Blog() {
               const data = JSON.parse(fallbackData);
 
               // Split blogs data for pagination (same logic as above)
-              let postPageChunks = [];
-              let postsInOnePage = [];
-              for (
-                let i = 0, blogCount = 1;
-                i < data.length;
-                i++, blogCount++
-              ) {
-                postsInOnePage.push(data[i]);
-                if (blogCount % blogPostsPerPage === 0) {
-                  postPageChunks.push([...postsInOnePage]);
-                  postsInOnePage = [];
-                }
-              }
-              if (postsInOnePage.length > 0) {
-                postPageChunks.push([...postsInOnePage]);
-              }
+              const postPageChunks = getBlogPostPageChunks(
+                data,
+                blogPostsPerPage
+              );
 
               setBlogs(postPageChunks);
               setVisibleBlogs(

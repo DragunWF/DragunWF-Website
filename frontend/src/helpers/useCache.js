@@ -1,4 +1,6 @@
-function useCache(key, expirationHours = 6) {
+const expirationHours = 6;
+
+function useCache(key) {
   const get = () => {
     const cached = localStorage.getItem(key);
     const timestamp = localStorage.getItem(`${key}_timestamp`);
