@@ -22,7 +22,7 @@ function About() {
           <a href={socialLinks.github} rel="noreferrer" target="_blank">
             GitHub profile
           </a>{" "}
-          or{" "}
+          and{" "}
           <a href={socialLinks.itchio} rel="noreferrer" target="_blank">
             Itch.io profile
           </a>
@@ -43,7 +43,7 @@ function About() {
         <Title>Hackathons</Title>
         <Image src="hackathon.webp" />
         <Description textAlign="justify">
-          I have a deep appreciation for hackathons and game jams — fast-paced
+          I have a deep appreciation for hackathons and game jams, fast-paced
           environments that challenge creativity, problem-solving, and teamwork
           under pressure. Every event feels like an exhilarating adventure,
           filled with unforgettable moments and new connections.
