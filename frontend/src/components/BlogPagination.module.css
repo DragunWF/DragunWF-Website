@@ -1,9 +1,14 @@
 .wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  justify-content: center;
-  flex-direction: row;
   gap: 20px;
+}
+
+.wrapper button {
+  width: 100%; /* Make buttons fill their grid cell */
+  padding: 0.6em 1.2em; /* Match the padding of paginationText */
+  text-align: center;
 }
 
 .paginationText {
@@ -15,4 +20,5 @@
   font-family: inherit;
   background-color: #1a1a1a;
   transition: border-color 0.25s;
+  text-align: center; /* Center the text within its grid cell */
 }
