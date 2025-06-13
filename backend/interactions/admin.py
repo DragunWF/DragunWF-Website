@@ -10,6 +10,8 @@ class BlogPostAdmin(admin.ModelAdmin):
 
 class MessageAdmin(admin.ModelAdmin):
     list_display = ["content", "date_sent"]
+    search_fields = ["content"]
+    list_per_page = 10
 
 
 # Registration of admin models
