@@ -1,5 +1,5 @@
 import styles from "./About.module.css";
-import { socialLinks } from "../helpers/linkUtils";
+import { socialLinks } from "../helpers/links";
 
 import Card from "../components/Card";
 import Description from "../components/Description";

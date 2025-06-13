@@ -4,7 +4,7 @@ import styles from "./AnonymousMessage.module.css";
 import Card from "../components/Card";
 import Title from "../components/Title";
 import Description from "../components/Description";
-import { sendAnonymousMessageApiUrl } from "../helpers/linkUtils";
+import { sendAnonymousMessageApiUrl } from "../helpers/links";
 
 function AnonymousMessage() {
   const [message, setMessage] = useState("");

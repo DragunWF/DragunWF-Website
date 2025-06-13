@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import Markdown from "react-markdown";
 
 import styles from "./BlogPost.module.css";
-import { blogPostApiUrl } from "../helpers/linkUtils";
+import { blogPostApiUrl } from "../helpers/links";
 import { formatDate } from "../helpers/formatters";
 import Card from "./Card";
 import Title from "./Title";

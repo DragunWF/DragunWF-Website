@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { blogPostApiUrl } from "../helpers/linkUtils";
+import { blogPostApiUrl } from "../helpers/links";
+import { blogsKey } from "../helpers/localStorageKeys";
 
 import styles from "./Blog.module.css";
 import Card from "../components/Card";
@@ -9,8 +10,38 @@ import BlogCard from "../components/BlogCard";
 import BlogPagination from "../components/BlogPagination";
 import Loader from "../components/Loader";
 
+// Custom hook for caching with expiration
+function useCache(key, expirationHours = 6) {
+  const get = () => {
+    const cached = localStorage.getItem(key);
+    const timestamp = localStorage.getItem(`${key}_timestamp`);
+
+    if (!cached || !timestamp) return null;
+
+    const expirationMs = expirationHours * 60 * 60 * 1000;
+    const isExpired = Date.now() - parseInt(timestamp) > expirationMs;
+
+    return isExpired ? null : JSON.parse(cached);
+  };
+
+  const set = (data) => {
+    localStorage.setItem(key, JSON.stringify(data));
+    localStorage.setItem(`${key}_timestamp`, Date.now().toString());
+  };
+
+  const clear = () => {
+    localStorage.removeItem(key);
+    localStorage.removeItem(`${key}_timestamp`);
+  };
+
+  return { get, set, clear };
+}
+
 function Blog() {
   const blogPostsPerPage = 3;
+
+  // Initialize the cache hook
+  const blogCache = useCache(blogsKey, 6); // 6 hours expiration
 
   const [blogs, setBlogs] = useState([]);
   const [visibleBlogs, setVisibleBlogs] = useState([]);
@@ -30,12 +61,23 @@ function Blog() {
           setIsLoading(true);
           setIsError(false);
 
-          const res = await fetch(blogPostApiUrl);
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          const data = await res.json();
+          // Try to get data from cache first
+          let data = blogCache.get();
 
+          if (!data) {
+            // Cache miss or expired - fetch fresh data
+            const res = await fetch(blogPostApiUrl);
+            if (!res.ok) {
+              throw new Error(`HTTP error! status: ${res.status}`);
+            }
+
+            data = await res.json();
+
+            // Store in cache
+            blogCache.set(data);
+          }
+
+          // Split blogs data for pagination
           let postPageChunks = [];
           let postsInOnePage = [];
           for (let i = 0, blogCount = 1; i < data.length; i++, blogCount++) {
@@ -56,13 +98,49 @@ function Blog() {
         } catch (err) {
           console.error(err);
           setIsError(true);
+
+          // Fallback: try to use cached data even if expired or fetch failed
+          const fallbackData = localStorage.getItem(blogsKey);
+          if (fallbackData) {
+            try {
+              const data = JSON.parse(fallbackData);
+
+              // Split blogs data for pagination (same logic as above)
+              let postPageChunks = [];
+              let postsInOnePage = [];
+              for (
+                let i = 0, blogCount = 1;
+                i < data.length;
+                i++, blogCount++
+              ) {
+                postsInOnePage.push(data[i]);
+                if (blogCount % blogPostsPerPage === 0) {
+                  postPageChunks.push([...postsInOnePage]);
+                  postsInOnePage = [];
+                }
+              }
+              if (postsInOnePage.length > 0) {
+                postPageChunks.push([...postsInOnePage]);
+              }
+
+              setBlogs(postPageChunks);
+              setVisibleBlogs(
+                postPageChunks.length > 0 ? postPageChunks[currentPage - 1] : []
+              );
+
+              // Clear error state since we have fallback data
+              setIsError(false);
+            } catch (parseErr) {
+              console.error("Failed to parse cached data:", parseErr);
+            }
+          }
         } finally {
           setIsLoading(false);
         }
       }
       fetchBlogs();
     },
-    [currentPage]
+    [currentPage, blogCache]
   );
 
   if (isLoading) {
