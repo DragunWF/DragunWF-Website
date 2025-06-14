@@ -5,12 +5,14 @@ import Card from "../components/Card";
 import Title from "../components/Title";
 import Description from "../components/Description";
 import { sendAnonymousMessageApiUrl } from "../helpers/links";
+import Modal from "../components/Modal";
 
 function AnonymousMessage() {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
   const [errorMessage, setErrorMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const maxCharacterLength = 2500;
   const minCharacterLength = 15;
@@ -54,11 +56,12 @@ function AnonymousMessage() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = await response.json(); // Note: For future use
 
       // Success
       setSubmitStatus("success");
       setMessage(""); // Clear the form
+      setIsModalOpen(true);
     } catch (error) {
       console.error("Error sending message:", error);
       setSubmitStatus("error");
@@ -70,6 +73,16 @@ function AnonymousMessage() {
 
   return (
     <div className={styles.wrapper}>
+      {isModalOpen && (
+        <Modal
+          title="Anonymous Message Sent!"
+          description="Your message to DragunWF has been sent! He’ll be able to read it either through his email or on the admin dashboard. Thanks for dropping by, anonymous messages like yours help keep this little corner of the internet lively."
+          imageSrc="/mail-received.webp"
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+        />
+      )}
       <Card>
         <Title>Anonymous Message Form</Title>
         <Description isMarginPresent={false}>
