@@ -10,3 +10,8 @@
   padding: 1rem; /* Prevents edge touching on small screens */
   box-sizing: border-box;
 }
+
+.blogsContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+}

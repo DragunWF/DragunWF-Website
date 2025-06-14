@@ -12,7 +12,7 @@ from .serializers import BlogPostSerializer, MessageSerializer
 @api_view(["GET"])
 def get_blog_posts(request: HttpRequest) -> Response:
     """Get all blog posts"""
-    blog_posts = BlogPost.objects.all()
+    blog_posts = BlogPost.objects.all().order_by('-date_created')
     serializer = BlogPostSerializer(blog_posts, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 

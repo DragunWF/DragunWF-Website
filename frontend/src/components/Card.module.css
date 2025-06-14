@@ -6,19 +6,18 @@
   padding: 2rem;
   max-width: 600px;
   margin: 1rem;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
   border: 1px solid #374151;
   opacity: 0;
   transform: translateY(20px);
-  animation: slideIn 0.3s ease-out forwards;
 }
 
-.maxWidthNormal {
-  max-width: 600px;
+.animationNormal {
+  animation: slideInNormal 0.3s ease-out forwards;
 }
 
-.maxWidthBlog {
-  max-width: 690px;
+.animationFullOpacity {
+  animation: slideInFullOpacity 0.3s ease-out forwards;
 }
 
 .card:hover {
@@ -26,6 +25,23 @@
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+
+/* Max widths for the card */
+
+.maxWidthNormal {
+  max-width: 600px;
+}
+
+.maxWidthBlog {
+  /* IMPORTANT: Determines the width of the card when the user is viewing the full blog */
+  max-width: 800px;
+}
+
+.maxWidthModal {
+  max-width: 525px;
+}
+
+/* End of max widths for the card */
 
 .card:nth-child(1) {
   animation-delay: 0.1s;
@@ -41,9 +57,16 @@
   text-align: center;
 }
 
-@keyframes slideIn {
+@keyframes slideInNormal {
   to {
     opacity: 0.8;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFullOpacity {
+  to {
+    opacity: 1;
     transform: translateY(0);
   }
 }
