@@ -118,7 +118,7 @@ function Blog() {
       }
       fetchBlogs();
     },
-    [currentPage, blogCache]
+    [currentPage] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   if (isLoading) {

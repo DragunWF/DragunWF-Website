@@ -78,7 +78,7 @@ function BlogPost() {
 
       fetchBlogPost();
     },
-    [postId, blogCache]
+    [postId] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   // Show loader
