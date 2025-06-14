@@ -96,7 +96,7 @@ function AnonymousMessage() {
       {isModalOpen && (
         <Modal
           title="Anonymous Message Sent!"
-          description={`Your message to DragunWF has been sent! He’ll be able to read it either through his email or on the admin dashboard. Thanks for dropping by, anonymous messages like yours help keep this little corner of the internet lively. You can send another message after a short ${messageCooldownMinutes}-minute cooldown.`}
+          description={`Your message to DragunWF has been sent! He’ll be able to read it either through his email or on his admin dashboard. Thanks for dropping by, anonymous messages like yours help keep this little corner of the internet lively. You can send another message after a short ${messageCooldownMinutes}-minute cooldown.`}
           imageSrc="/mail-received.webp"
           onClose={() => {
             setIsModalOpen(false);
