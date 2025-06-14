@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  position: relative; /* Ensures it's above the background */
+  z-index: 1; /* Makes sure content is above background */
+  padding: 1rem; /* Prevents edge touching on small screens */
+  box-sizing: border-box;
+}
