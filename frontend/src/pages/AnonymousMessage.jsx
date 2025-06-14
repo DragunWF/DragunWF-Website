@@ -15,7 +15,7 @@ function AnonymousMessage() {
   const minCharacterLength = 15;
 
   // Sets the number of minutes before the user can send a message again. It helps prevent spam.
-  const messageCooldownMinutes = 5;
+  const messageCooldownMinutes = 3;
   const isOnMessageCooldownCache = useCache(
     isOnMessageCooldown,
     messageCooldownMinutes / 60
