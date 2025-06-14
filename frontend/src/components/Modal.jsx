@@ -35,7 +35,7 @@ function Modal({ onClose, title, description, imageSrc }) {
 
   return (
     <div className={styles.overlay} onClick={handleBackdropClick}>
-      <Card maxWidthType="modal">
+      <Card maxWidthType="modal" animationType="fullOpacity">
         <Title>{title}</Title>
         {imageSrc && <Image src={imageSrc} />}
         <Description textAlign="justify">{description}</Description>
