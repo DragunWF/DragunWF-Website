@@ -10,6 +10,9 @@ function Card({ children, maxWidthType = "normal" }) {
     case "blog":
       maxWidthClass = styles.maxWidthBlog;
       break;
+    case "modal":
+      maxWidthClass = styles.maxWidthModal;
+      break;
     default:
       maxWidthClass = styles.maxWidthNormal;
       break;
