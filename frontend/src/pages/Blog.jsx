@@ -159,19 +159,21 @@ function Blog() {
 
   return (
     <div className={styles.wrapper}>
-      {visibleBlogs.map((blog) => {
-        return (
-          <BlogCard
-            title={blog.title}
-            imageLink={blog.image_link ? blog.image_link : ""}
-            description={blog.description}
-            dateCreated={blog.date_created}
-            dateUpdated={blog.date_updated}
-            postId={blog.id}
-            key={blog.id}
-          />
-        );
-      })}
+      <div className={styles.blogsContainer}>
+        {visibleBlogs.map((blog) => {
+          return (
+            <BlogCard
+              title={blog.title}
+              imageLink={blog.image_link ? blog.image_link : ""}
+              description={blog.description}
+              dateCreated={blog.date_created}
+              dateUpdated={blog.date_updated}
+              postId={blog.id}
+              key={blog.id}
+            />
+          );
+        })}
+      </div>
       <BlogPagination
         currentPage={currentPage}
         updateCurrentPage={handleUpdateCurrentPage}

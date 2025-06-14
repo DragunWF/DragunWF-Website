@@ -28,11 +28,21 @@ function Pagination({ currentPage, updateCurrentPage, maxPageCount }) {
   return (
     <Card>
       <div className={styles.wrapper}>
-        <button onClick={handlePreviousButtonClick}>Previous</button>
+        <button
+          onClick={handlePreviousButtonClick}
+          aria-label="Go to previous page"
+        >
+          Previous
+        </button>
         <p className={styles.paginationText}>
           Page {currentPageCount} / {maxPageCount}
         </p>
-        <button onClick={handleNextButtonClick}>Next</button>
+        <button
+          onClick={handleNextButtonClick}
+          aria-label="Go to next page"
+        >
+          Next
+        </button>
       </div>
     </Card>
   );

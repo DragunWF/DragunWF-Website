@@ -2,13 +2,22 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .wrapper button {
-  width: 100%; /* Make buttons fill their grid cell */
-  padding: 0.6em 1.2em; /* Match the padding of paginationText */
+  padding: 0.6em 1.2em;
   text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  min-width: 80px;
+  flex-shrink: 0;
 }
 
 .paginationText {
@@ -20,5 +29,50 @@
   font-family: inherit;
   background-color: #1a1a1a;
   transition: border-color 0.25s;
-  text-align: center; /* Center the text within its grid cell */
+  text-align: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 480px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .wrapper button {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .paginationText {
+    order: -1; /* Move pagination text to top on mobile */
+    width: 100%;
+  }
+}
+
+/* Small tablets */
+@media (max-width: 768px) and (min-width: 481px) {
+  .wrapper {
+    gap: 8px;
+  }
+
+  .wrapper button {
+    min-width: 70px;
+    padding: 0.5em 1em;
+  }
+
+  .paginationText {
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+}
+
+/* Large screens - maintain current spacing */
+@media (min-width: 1024px) {
+  .wrapper {
+    gap: 20px;
+  }
 }
