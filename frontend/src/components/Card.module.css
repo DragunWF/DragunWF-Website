@@ -18,7 +18,8 @@
 }
 
 .maxWidthBlog {
-  max-width: 690px;
+  /* IMPORTANT: Determines the width of the card when the user is viewing the full blog */
+  max-width: 800px;
 }
 
 .card:hover {
