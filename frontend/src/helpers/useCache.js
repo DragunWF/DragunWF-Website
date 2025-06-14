@@ -1,4 +1,4 @@
-const expirationHours = 6;
+const expirationHours = 1;
 
 function useCache(key) {
   const get = () => {
