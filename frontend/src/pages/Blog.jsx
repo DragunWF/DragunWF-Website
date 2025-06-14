@@ -14,9 +14,7 @@ import Loader from "../components/Loader";
 
 function Blog() {
   const blogPostsPerPage = 3;
-
-  // Initialize the cache hook
-  const blogCache = useCache(blogsKey); // 6 hours expiration
+  const blogCache = useCache(blogsKey);
 
   const [blogs, setBlogs] = useState([]);
   const [visibleBlogs, setVisibleBlogs] = useState([]);
