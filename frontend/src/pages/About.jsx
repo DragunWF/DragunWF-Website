@@ -11,7 +11,7 @@ function About() {
     <div className={styles.wrapper}>
       <Card>
         <Title>Hobbies & Interests</Title>
-        <Image src="/banner.webp" />
+        <Image src="/hobbies-and-interests.webp" />
         <Description textAlign="justify">
           Hallo! I’ve been programming since my Junior High School days,
           initially drawn to game development, the spark that first ignited my
@@ -24,7 +24,7 @@ function About() {
           </a>{" "}
           and{" "}
           <a href={socialLinks.itchio} rel="noreferrer" target="_blank">
-            Itch.io profile
+            Itch.io page
           </a>
           .
         </Description>
@@ -86,10 +86,15 @@ function About() {
           and personal growth.
         </Description>
         <Description textAlign="justify">
-          Even everyday items like my keyboard, clothes, or bags feel like
-          in-game equipment, each with its own unique value and story. Whether
-          earned through effort, gifted, or chosen with care, they’re part of my
-          ongoing adventure toward continuous self-improvement.
+          Ever since reading <i>Atomic Habits</i>, I’ve treated each day as a
+          chance to gain experience points. I read books, fill pages in my
+          journal, tackle lessons from a Udemy course, and build software that
+          challenges me. Every small action stacks, pushing me closer to those
+          critical thresholds where real change happens. Hitting those moments
+          feels like unlocking a new skill in my personal skill tree. That’s
+          what keeps the fire alive, the thrill of becoming a little better, a
+          little stronger, and a little wiser with every quest I take on towards
+          continuous self-improvement.
         </Description>
       </Card>
 
