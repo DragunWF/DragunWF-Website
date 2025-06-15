@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import Markdown from "react-markdown";
 
 import styles from "./BlogPost.module.css";
+import descriptionStyles from "./Description.module.css";
 import { blogPostApiUrl } from "../helpers/links";
 import { blogsKey } from "../helpers/localStorageKeys";
 import { formatDate } from "../helpers/formatters";
@@ -136,7 +137,7 @@ function BlogPost() {
           <Markdown
             components={{
               p: ({ node, ...props }) => (
-                <p style={{ textAlign: "justify" }} {...props} />
+                <p className={descriptionStyles.justify} {...props} />
               ),
               ul: ({ node, ...props }) => (
                 <ul style={{ marginBottom: "16px" }} {...props} />
