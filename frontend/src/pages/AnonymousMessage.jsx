@@ -25,7 +25,7 @@ function AnonymousMessage() {
   const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
   const [errorMessage, setErrorMessage] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault(); // Prevent default form submission
