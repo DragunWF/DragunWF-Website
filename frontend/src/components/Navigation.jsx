@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import styles from "./Navigation.module.css";
+import { pageLinks } from "../helpers/links";
 
 function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,9 +9,9 @@ function Navigation() {
 
   const navItems = [
     { path: "/", label: "Home" },
-    { path: "/about", label: "About" },
-    { path: "/blog", label: "Blog" },
-    { path: "/anonymous-message", label: "Message" },
+    { path: pageLinks.about, label: "About" },
+    { path: pageLinks.blog, label: "Blog" },
+    { path: pageLinks.anonymousMessage, label: "Message" },
   ];
 
   function toggleMenu() {
