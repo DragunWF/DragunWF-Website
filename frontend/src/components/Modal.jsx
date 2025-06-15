@@ -35,14 +35,16 @@ function Modal({ onClose, title, description, imageSrc }) {
 
   return (
     <div className={styles.overlay} onClick={handleBackdropClick}>
-      <Card maxWidthType="modal" animationType="fullOpacity">
-        <Title>{title}</Title>
-        {imageSrc && <Image src={imageSrc} />}
-        <Description textAlign="justify">{description}</Description>
-        <button className={styles.closeButton} onClick={handleCloseClick}>
-          Close
-        </button>
-      </Card>
+      <div className={styles.confirmationModalCard}>
+        <Card maxWidthType="modal" animationType="fullOpacity">
+          <Title>{title}</Title>
+          {imageSrc && <Image src={imageSrc} />}
+          <Description textAlign="justify">{description}</Description>
+          <button className={styles.closeButton} onClick={handleCloseClick}>
+            Close
+          </button>
+        </Card>
+      </div>
     </div>
   );
 }

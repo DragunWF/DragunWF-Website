@@ -10,3 +10,9 @@
   padding: 1rem; /* Prevents edge touching on small screens */
   box-sizing: border-box;
 }
+
+@media (max-width: 480px) {
+  .wrapper {
+    min-height: 75vh;
+  }
+}
