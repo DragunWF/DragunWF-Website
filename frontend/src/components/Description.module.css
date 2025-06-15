@@ -17,6 +17,18 @@
 
 .justify {
   text-align: justify;
+
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  
+  /* Enhanced control */
+  hyphenate-limit-chars: 6 3 2;
+  hyphenate-limit-lines: 2;
+  hyphenate-limit-zone: 8%;
+  
+  word-spacing: -0.1em;
+  letter-spacing: 0.01em;
 }
 
 .center {
