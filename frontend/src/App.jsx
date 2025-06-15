@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LayeredBackground } from "animated-backgrounds";
 
-import { adminSiteUrl } from "./helpers/links";
+import { adminSiteUrl, pageLinks } from "./helpers/links";
 import ExternalRedirect from "./helpers/ExernalRedirect";
 
 import Homepage from "./pages/Homepage";
@@ -42,10 +42,13 @@ function App() {
 
       <Routes>
         <Route index element={<Homepage />} />
-        <Route path="about" element={<About />} />
-        <Route path="blog" element={<Blog />} />
-        <Route path="blog/:postId" element={<BlogPost />} />
-        <Route path="anonymous-message" element={<AnonymousMessage />} />
+        <Route path={pageLinks.about} element={<About />} />
+        <Route path={pageLinks.blog} element={<Blog />} />
+        <Route path={`${pageLinks.blog}/:postId`} element={<BlogPost />} />
+        <Route
+          path={pageLinks.anonymousMessage}
+          element={<AnonymousMessage />}
+        />
         <Route
           path="/admin"
           element={<ExternalRedirect url={adminSiteUrl} />}
