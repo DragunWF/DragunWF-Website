@@ -89,7 +89,7 @@
 }
 
 .navToggle.active .bar:nth-child(1) {
-  transform: rotate(45deg) translate(0.4rem, 0.4rem);
+  transform: rotate(45deg) translate(0.25rem, 0.3rem);
 }
 
 .navToggle.active .bar:nth-child(2) {
@@ -97,7 +97,7 @@
 }
 
 .navToggle.active .bar:nth-child(3) {
-  transform: rotate(-45deg) translate(0.4rem, -0.4rem);
+  transform: rotate(-45deg) translate(0.25rem, -0.3rem);
 }
 
 /* Mobile Menu */
