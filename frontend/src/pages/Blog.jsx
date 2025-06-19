@@ -13,7 +13,7 @@ import BlogPagination from "../components/BlogPagination";
 import Loader from "../components/Loader";
 
 function Blog() {
-  const blogPostsPerPage = 3;
+  const blogPostsPerPage = 4;
   const blogCache = useCache(blogsKey);
 
   const [blogs, setBlogs] = useState([]);

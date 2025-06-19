@@ -13,5 +13,16 @@
 
 .blogsContainer {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.blogsContainer > *:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+@media (max-width: 920px) {
+  .blogsContainer {
+    grid-template-columns: 1fr;
+  }
 }
