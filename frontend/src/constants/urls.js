@@ -1,4 +1,4 @@
-const isDevMode = import.meta.env.VITE_VERCEL !== "true";
+const isDevMode = import.meta.env.DEV;
 
 export const backendUrl = isDevMode
   ? "http://127.0.0.1:8000"
