@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import removeMd from "remove-markdown";
 
 import styles from "./BlogCard.module.css";
-import Card from "./Card";
-import Title from "./Title";
-import Description from "./Description";
-import Image from "./Image";
-import { formatDate } from "../helpers/formatters";
+import Card from "../ui/Card";
+import Title from "../ui/Title";
+import Description from "../ui/Description";
+import Image from "../ui/Image";
+import { formatDate } from "../../helpers/formatters";
 
 function BlogCard({
   postId,

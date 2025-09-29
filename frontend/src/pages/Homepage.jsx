@@ -1,5 +1,5 @@
 import styles from "./Homepage.module.css";
-import IntroCard from "../components/IntroCard";
+import IntroCard from "../components/home/IntroCard";
 
 function Homepage() {
   return (

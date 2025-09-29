@@ -3,17 +3,17 @@ import { useParams, Link } from "react-router-dom";
 import Markdown from "react-markdown";
 
 import styles from "./BlogPost.module.css";
-import descriptionStyles from "./Description.module.css";
-import { blogPostApiUrl } from "../helpers/links";
-import { blogsKey } from "../helpers/localStorageKeys";
-import { formatDate } from "../helpers/formatters";
-import useCache from "../helpers/useCache";
+import descriptionStyles from "../ui/Description.module.css";
+import { blogPostApiUrl } from "../../constants/urls";
+import { blogsKey } from "../../constants/localStorageKeys";
+import { formatDate } from "../../helpers/formatters";
+import useCache from "../../hooks/useCache";
 
-import Card from "./Card";
-import Title from "./Title";
-import Loader from "./Loader";
-import Description from "./Description";
-import Image from "./Image";
+import Card from "../ui/Card";
+import Title from "../ui/Title";
+import Loader from "../ui/Loader";
+import Description from "../ui/Description";
+import Image from "../ui/Image";
 
 function BlogPost() {
   const { postId } = useParams();

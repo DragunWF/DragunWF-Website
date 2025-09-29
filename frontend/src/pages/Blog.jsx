@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
-import { blogPostApiUrl } from "../helpers/links";
-import { blogsKey } from "../helpers/localStorageKeys";
+import { blogPostApiUrl } from "../constants/urls";
+import { blogsKey } from "../constants/localStorageKeys";
 import { getBlogPostPageChunks } from "../helpers/utils";
-import useCache from "../helpers/useCache";
+import useCache from "../hooks/useCache";
 
 import styles from "./Blog.module.css";
-import Card from "../components/Card";
-import Title from "../components/Title";
-import Description from "../components/Description";
-import BlogCard from "../components/BlogCard";
-import BlogPagination from "../components/BlogPagination";
-import Loader from "../components/Loader";
+import BlogCard from "../components/blog/BlogCard";
+import BlogPagination from "../components/blog/BlogPagination";
+
+import Card from "../components/ui/Card";
+import Title from "../components/ui/Title";
+import Description from "../components/ui/Description";
+import Loader from "../components/ui/Loader";
 
 function Blog() {
   const blogPostsPerPage = 4;

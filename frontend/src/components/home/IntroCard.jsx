@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-import { socialLinks } from "../helpers/links";
+import { socialLinks } from "../../constants/urls";
 import styles from "./IntroCard.module.css";
-import Card from "./Card";
-import Description from "./Description";
-import Title from "./Title";
+import Card from "../ui/Card";
+import Description from "../ui/Description";
+import Title from "../ui/Title";
 import AnimatedAvatar from "./AnimatedAvatar";
 
 function IntroCard({

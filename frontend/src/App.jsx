@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LayeredBackground } from "animated-backgrounds";
 
-import { adminSiteUrl, pageLinks } from "./helpers/links";
+import { adminSiteUrl, pageLinks } from "./constants/urls";
 import ExternalRedirect from "./helpers/ExernalRedirect";
 
 import Homepage from "./pages/Homepage";
@@ -10,8 +10,8 @@ import About from "./pages/About";
 import Blog from "./pages/Blog";
 import ApologyPage from "./pages/ApologyPage";
 
-import Navigation from "./components/Navigation";
-import BlogPost from "./components/BlogPost";
+import Navigation from "./components/ui/Navigation";
+import BlogPost from "./components/blog/BlogPost";
 
 function App() {
   const animatedBackgroundLayers = [

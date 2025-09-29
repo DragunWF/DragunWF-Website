@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "./About.module.css";
-import { socialLinks } from "../helpers/links";
+import { socialLinks } from "../constants/urls";
 
-import Card from "../components/Card";
-import Description from "../components/Description";
-import Title from "../components/Title";
-import Image from "../components/Image";
+import Card from "../components/ui/Card";
+import Description from "../components/ui/Description";
+import Title from "../components/ui/Title";
+import Image from "../components/ui/Image";
 
 function About() {
   const [scrollProgress, setScrollProgress] = useState(0);

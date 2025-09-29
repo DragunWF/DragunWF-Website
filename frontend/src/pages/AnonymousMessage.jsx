@@ -1,14 +1,14 @@
 import { useState } from "react";
 
 import styles from "./AnonymousMessage.module.css";
-import Card from "../components/Card";
-import Title from "../components/Title";
-import Description from "../components/Description";
-import Modal from "../components/Modal";
+import Card from "../components/ui/Card";
+import Title from "../components/ui/Title";
+import Description from "../components/ui/Description";
+import Modal from "../components/ui/Modal";
 
-import { sendAnonymousMessageApiUrl } from "../helpers/links";
-import { isOnMessageCooldown } from "../helpers/localStorageKeys";
-import useCache from "../helpers/useCache";
+import { sendAnonymousMessageApiUrl } from "../constants/urls";
+import { isOnMessageCooldown } from "../constants/localStorageKeys";
+import useCache from "../hooks/useCache";
 
 function AnonymousMessage() {
   const maxCharacterLength = 2500;

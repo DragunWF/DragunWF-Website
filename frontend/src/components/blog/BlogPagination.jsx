@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 import styles from "./BlogPagination.module.css";
-import Card from "./Card";
+import Card from "../ui/Card";
 
 function Pagination({ currentPage, updateCurrentPage, maxPageCount }) {
   const [currentPageCount, setCurrentPageCount] = useState(currentPage);
@@ -37,10 +37,7 @@ function Pagination({ currentPage, updateCurrentPage, maxPageCount }) {
         <p className={styles.paginationText}>
           Page {currentPageCount} / {maxPageCount}
         </p>
-        <button
-          onClick={handleNextButtonClick}
-          aria-label="Go to next page"
-        >
+        <button onClick={handleNextButtonClick} aria-label="Go to next page">
           Next
         </button>
       </div>

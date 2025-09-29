@@ -1,7 +1,7 @@
 import styles from "./ApologyPage.module.css";
-import Card from "../components/Card";
-import Title from "../components/Title";
-import Image from "../components/Image";
+import Card from "../components/ui/Card";
+import Title from "../components/ui/Title";
+import Image from "../components/ui/Image";
 
 function ApologyPage() {
   return (

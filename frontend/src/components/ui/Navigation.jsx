@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import styles from "./Navigation.module.css";
-import { pageLinks } from "../helpers/links";
+import { pageLinks } from "../../constants/urls";
 
 function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
