@@ -1,9 +1,8 @@
-/*
-   Production Backend URL: https://dashboard-dragunwf.onrender.com
-   Development Backend URL: http://127.0.0.1:8000
-*/
+const isDevMode = import.meta.env.VITE_VERCEL !== "true";
 
-export const backendUrl = "https://dashboard-dragunwf.onrender.com";
+export const backendUrl = isDevMode
+  ? "http://127.0.0.1:8000"
+  : "https://dashboard-dragunwf.onrender.com";
 export const adminSiteUrl = `${backendUrl}/admin`;
 export const blogPostApiUrl = `${backendUrl}/api/blog_posts`;
 export const sendAnonymousMessageApiUrl = `${backendUrl}/api/send_anonymous_message`;
