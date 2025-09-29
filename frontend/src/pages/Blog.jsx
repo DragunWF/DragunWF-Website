@@ -140,10 +140,10 @@ function Blog() {
     return (
       <div className={styles.wrapper}>
         <Card>
-          <Title>Something went wrong!</Title>
+          <Title>Blog Portal Jammed!</Title>
           <Description>
-            An unexpected error occurred while retrieving the blog data. Please
-            try again later.
+            A playful spirit tangled the blog scrolls. Try refreshing, or return
+            when the magic is restored.
           </Description>
         </Card>
       </div>
@@ -154,10 +154,10 @@ function Blog() {
     return (
       <div className={styles.wrapper}>
         <Card>
-          <Title>Blogs Coming Soon</Title>
+          <Title>A Magical Mist Obscures the Blogs</Title>
           <Description>
-            There are currently no blogs yet. Stay tuned as I will be adding
-            blog posts here in the future.
+            The blog scrolls are currently hidden by a mysterious force. Please
+            try again later!
           </Description>
         </Card>
       </div>
