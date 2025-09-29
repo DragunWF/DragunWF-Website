@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { blogPostApiUrl } from "../constants/urls";
 import { blogsKey } from "../constants/localStorageKeys";
-import { getBlogPostPageChunks } from "../helpers/utils";
 import useCache from "../hooks/useCache";
 
 import styles from "./Blog.module.css";
@@ -15,17 +14,21 @@ import Loader from "../components/ui/Loader";
 
 function Blog() {
   const blogPostsPerPage = 4;
-  const blogCache = useCache(blogsKey);
 
   const [blogs, setBlogs] = useState([]);
-  const [visibleBlogs, setVisibleBlogs] = useState([]);
+  const [paginationInfo, setPaginationInfo] = useState({
+    current_page: 1,
+    total_pages: 1,
+    total_count: 0,
+    has_next: false,
+    has_previous: false,
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   function handleUpdateCurrentPage(pageCount) {
     setCurrentPage(pageCount);
-    setVisibleBlogs(() => blogs[currentPage - 1]);
   }
 
   useEffect(
@@ -35,48 +38,78 @@ function Blog() {
           setIsLoading(true);
           setIsError(false);
 
+          // Create cache key with page number
+          const cacheKey = `${blogsKey}_page_${currentPage}`;
+
           // Try to get data from cache first
-          let data = blogCache.get();
+          let cachedData = localStorage.getItem(cacheKey);
+          let data = null;
+
+          if (cachedData) {
+            try {
+              const parsed = JSON.parse(cachedData);
+              const cacheAge = Date.now() - parsed.timestamp;
+              // Use cache if less than 30 minutes old
+              if (cacheAge < 30 * 60 * 1000) {
+                data = parsed.data;
+              }
+            } catch (parseErr) {
+              console.error("Failed to parse cached data:", parseErr);
+            }
+          }
 
           if (!data) {
             // Cache miss or expired - fetch fresh data
-            const res = await fetch(blogPostApiUrl);
+            const url = `${blogPostApiUrl}?page=${currentPage}&page_size=${blogPostsPerPage}`;
+            const res = await fetch(url);
+
             if (!res.ok) {
               throw new Error(`HTTP error! status: ${res.status}`);
             }
 
             data = await res.json();
 
-            // Store in cache
-            blogCache.set(data);
+            // Store in cache with timestamp
+            localStorage.setItem(
+              cacheKey,
+              JSON.stringify({
+                data: data,
+                timestamp: Date.now(),
+              })
+            );
           }
 
-          // Split blogs data for pagination
-          const postPageChunks = getBlogPostPageChunks(data, blogPostsPerPage);
-
-          setBlogs(postPageChunks);
-          setVisibleBlogs(
-            postPageChunks.length > 0 ? postPageChunks[currentPage - 1] : []
+          setBlogs(data.results || []);
+          setPaginationInfo(
+            data.pagination || {
+              current_page: 1,
+              total_pages: 1,
+              total_count: 0,
+              has_next: false,
+              has_previous: false,
+            }
           );
         } catch (err) {
           console.error(err);
           setIsError(true);
 
-          // Fallback: try to use cached data even if expired or fetch failed
-          const fallbackData = localStorage.getItem(blogsKey);
+          // Fallback: try to use any cached data for this page
+          const cacheKey = `${blogsKey}_page_${currentPage}`;
+          const fallbackData = localStorage.getItem(cacheKey);
           if (fallbackData) {
             try {
-              const data = JSON.parse(fallbackData);
+              const parsed = JSON.parse(fallbackData);
+              const data = parsed.data;
 
-              // Split blogs data for pagination (same logic as above)
-              const postPageChunks = getBlogPostPageChunks(
-                data,
-                blogPostsPerPage
-              );
-
-              setBlogs(postPageChunks);
-              setVisibleBlogs(
-                postPageChunks.length > 0 ? postPageChunks[currentPage - 1] : []
+              setBlogs(data.results || []);
+              setPaginationInfo(
+                data.pagination || {
+                  current_page: currentPage,
+                  total_pages: 1,
+                  total_count: 0,
+                  has_next: false,
+                  has_previous: false,
+                }
               );
 
               // Clear error state since we have fallback data
@@ -89,9 +122,10 @@ function Blog() {
           setIsLoading(false);
         }
       }
+
       fetchBlogs();
     },
-    [currentPage] // eslint-disable-line react-hooks/exhaustive-deps
+    [currentPage, blogPostsPerPage] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   if (isLoading) {
@@ -116,7 +150,7 @@ function Blog() {
     );
   }
 
-  if (blogs.length === 0) {
+  if (blogs.length === 0 && !isLoading && !isError) {
     return (
       <div className={styles.wrapper}>
         <Card>
@@ -133,7 +167,7 @@ function Blog() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.blogsContainer}>
-        {visibleBlogs.map((blog) => {
+        {blogs.map((blog) => {
           return (
             <BlogCard
               title={blog.title}
@@ -147,11 +181,15 @@ function Blog() {
           );
         })}
       </div>
-      <BlogPagination
-        currentPage={currentPage}
-        updateCurrentPage={handleUpdateCurrentPage}
-        maxPageCount={blogs.length}
-      />
+      {paginationInfo.total_pages > 1 && (
+        <BlogPagination
+          currentPage={paginationInfo.current_page}
+          updateCurrentPage={handleUpdateCurrentPage}
+          maxPageCount={paginationInfo.total_pages}
+          hasNext={paginationInfo.has_next}
+          hasPrevious={paginationInfo.has_previous}
+        />
+      )}
     </div>
   );
 }

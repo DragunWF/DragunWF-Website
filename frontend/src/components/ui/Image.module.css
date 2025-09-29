@@ -39,3 +39,24 @@
 .dynamicImg:hover::before {
   opacity: 1;
 }
+
+/* Fallback image styling */
+.fallbackImg {
+  opacity: 0.8;
+  filter: brightness(0.9) contrast(0.95) grayscale(0.2);
+  border: 2px dashed rgba(168, 85, 247, 0.3);
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.05),
+    rgba(91, 33, 182, 0.02)
+  );
+}
+
+.fallbackImg:hover {
+  opacity: 0.9;
+  filter: brightness(0.95) contrast(1) grayscale(0.1);
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: scale(1.01);
+  box-shadow: 0 6px 30px rgba(124, 58, 237, 0.15),
+    0 0 0 1px rgba(168, 85, 247, 0.2), 0 0 15px rgba(168, 85, 247, 0.1);
+}

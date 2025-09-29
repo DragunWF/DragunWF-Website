@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.http import HttpRequest
 from django.shortcuts import get_object_or_404
@@ -11,10 +12,49 @@ from .serializers import BlogPostSerializer, MessageSerializer
 
 @api_view(["GET"])
 def get_blog_posts(request: HttpRequest) -> Response:
-    """Get all blog posts"""
+    """Get paginated blog posts"""
+    # Get query parameters
+    page = request.GET.get('page', 1)
+    page_size = request.GET.get('page_size', 4)
+
+    try:
+        page = int(page)
+        page_size = int(page_size)
+        # Limit page_size to prevent abuse
+        page_size = min(page_size, 20)
+    except (ValueError, TypeError):
+        page = 1
+        page_size = 4
+
+    # Get all blog posts ordered by creation date
     blog_posts = BlogPost.objects.all().order_by('-date_created')
-    serializer = BlogPostSerializer(blog_posts, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # Create paginator
+    paginator = Paginator(blog_posts, page_size)
+
+    try:
+        paginated_posts = paginator.page(page)
+    except PageNotAnInteger:
+        paginated_posts = paginator.page(1)
+    except EmptyPage:
+        paginated_posts = paginator.page(paginator.num_pages)
+
+    # Serialize the posts
+    serializer = BlogPostSerializer(paginated_posts, many=True)
+
+    return Response({
+        'results': serializer.data,
+        'pagination': {
+            'current_page': paginated_posts.number,
+            'total_pages': paginator.num_pages,
+            'total_count': paginator.count,
+            'page_size': page_size,
+            'has_next': paginated_posts.has_next(),
+            'has_previous': paginated_posts.has_previous(),
+            'next_page': paginated_posts.next_page_number() if paginated_posts.has_next() else None,
+            'previous_page': paginated_posts.previous_page_number() if paginated_posts.has_previous() else None,
+        }
+    }, status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])

@@ -3,8 +3,15 @@ import PropTypes from "prop-types";
 
 import styles from "./BlogPagination.module.css";
 import Card from "../ui/Card";
+import BlogButton from "./BlogButton";
 
-function Pagination({ currentPage, updateCurrentPage, maxPageCount }) {
+function Pagination({
+  currentPage,
+  updateCurrentPage,
+  maxPageCount,
+  hasNext,
+  hasPrevious,
+}) {
   const [currentPageCount, setCurrentPageCount] = useState(currentPage);
 
   function handlePreviousButtonClick() {
@@ -28,18 +35,31 @@ function Pagination({ currentPage, updateCurrentPage, maxPageCount }) {
   return (
     <Card>
       <div className={styles.wrapper}>
-        <button
+        <BlogButton
           onClick={handlePreviousButtonClick}
+          variant="blogOutline"
+          size="medium"
+          disabled={!hasPrevious}
           aria-label="Go to previous page"
         >
           Previous
-        </button>
-        <p className={styles.paginationText}>
-          Page {currentPageCount} / {maxPageCount}
-        </p>
-        <button onClick={handleNextButtonClick} aria-label="Go to next page">
+        </BlogButton>
+
+        <div className={styles.paginationInfo}>
+          <span className={styles.paginationText}>
+            Page {currentPageCount} of {maxPageCount}
+          </span>
+        </div>
+
+        <BlogButton
+          onClick={handleNextButtonClick}
+          variant="blogOutline"
+          size="medium"
+          disabled={!hasNext}
+          aria-label="Go to next page"
+        >
           Next
-        </button>
+        </BlogButton>
       </div>
     </Card>
   );
@@ -49,6 +69,13 @@ Pagination.propTypes = {
   currentPage: PropTypes.number.isRequired,
   updateCurrentPage: PropTypes.func.isRequired,
   maxPageCount: PropTypes.number.isRequired,
+  hasNext: PropTypes.bool,
+  hasPrevious: PropTypes.bool,
+};
+
+Pagination.defaultProps = {
+  hasNext: false,
+  hasPrevious: false,
 };
 
 export default Pagination;

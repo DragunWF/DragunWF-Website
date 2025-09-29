@@ -38,12 +38,14 @@ function BlogPost() {
           let blogArray = blogCache.get();
 
           if (!blogArray) {
-            // Cache miss - fetch all blogs
-            const res = await fetch(blogPostApiUrl);
+            // Cache miss - fetch all blogs (we need all blogs to find the specific one)
+            // Note: We could optimize this with a separate endpoint for individual posts
+            const res = await fetch(`${blogPostApiUrl}?page_size=1000`); // Get all posts
             if (!res.ok) {
               throw new Error(`HTTP error! status: ${res.status}`);
             }
-            blogArray = await res.json();
+            const response = await res.json();
+            blogArray = response.results || response; // Handle both paginated and non-paginated responses
             blogCache.set(blogArray);
           }
 
@@ -63,7 +65,11 @@ function BlogPost() {
           const fallbackData = localStorage.getItem(blogsKey);
           if (fallbackData) {
             try {
-              const blogArray = JSON.parse(fallbackData);
+              const parsed = JSON.parse(fallbackData);
+              // Handle both old array format and new paginated format
+              const blogArray = Array.isArray(parsed)
+                ? parsed
+                : parsed.results || [];
               const foundBlog = getBlogById(blogArray, postId);
               if (foundBlog) {
                 setCurrentBlog(foundBlog);
