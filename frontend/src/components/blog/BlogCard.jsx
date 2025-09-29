@@ -7,6 +7,7 @@ import Card from "../ui/Card";
 import Title from "../ui/Title";
 import Description from "../ui/Description";
 import Image from "../ui/Image";
+import BlogButton from "./BlogButton";
 import { formatDate } from "../../helpers/formatters";
 
 function BlogCard({
@@ -35,7 +36,9 @@ function BlogCard({
         {trimDescription(rawDescription)}
       </Description>
       <Link to={`${postId}`}>
-        <button className={styles.viewBlogButton}>View Full Blog</button>
+        <BlogButton variant="blog" width="half">
+          View Full Blog
+        </BlogButton>
       </Link>
       <div className={styles.datesWrapper}>
         <span>Created: {formatDate(dateCreated)}</span>

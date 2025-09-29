@@ -5,6 +5,7 @@ import Card from "../components/ui/Card";
 import Title from "../components/ui/Title";
 import Description from "../components/ui/Description";
 import Modal from "../components/ui/Modal";
+import Button from "../components/ui/Button";
 
 import { sendAnonymousMessageApiUrl } from "../constants/urls";
 import { isOnMessageCooldown } from "../constants/localStorageKeys";
@@ -142,13 +143,14 @@ function AnonymousMessage() {
             <div className={styles.errorMessage}>{errorMessage}</div>
           )}
 
-          <button
-            className={styles.submitButton}
+          <Button
             type="submit"
             disabled={isLoading}
+            width="half"
+            className={styles.submitButton}
           >
             {isLoading ? "Sending..." : "Send Message"}
-          </button>
+          </Button>
         </form>
       </Card>
     </div>

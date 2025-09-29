@@ -14,6 +14,7 @@ import Title from "../ui/Title";
 import Loader from "../ui/Loader";
 import Description from "../ui/Description";
 import Image from "../ui/Image";
+import BlogButton from "./BlogButton";
 
 function BlogPost() {
   const { postId } = useParams();
@@ -102,7 +103,9 @@ function BlogPost() {
             you requested. Please try refreshing the page or check back later.
           </Description>
           <Link to="../blog">
-            <button className={styles.backButton}>Back</button>
+            <BlogButton variant="blogSecondary" width="half">
+              Back
+            </BlogButton>
           </Link>
         </Card>
       </div>
@@ -120,7 +123,9 @@ function BlogPost() {
             removed.
           </Description>
           <Link to="../blog">
-            <button className={styles.backButton}>Back to Blog</button>
+            <BlogButton variant="blogOutline" width="half">
+              Back to Blog
+            </BlogButton>
           </Link>
         </Card>
       </div>
@@ -161,7 +166,9 @@ function BlogPost() {
           <span>Updated: {formatDate(currentBlog.date_updated)}</span>
         </div>
         <Link to="../blog">
-          <button className={styles.backButton}>Back</button>
+          <BlogButton variant="blog" width="half">
+            Back
+          </BlogButton>
         </Link>
       </Card>
     </div>
