@@ -17,21 +17,24 @@ function App() {
   const animatedBackgroundLayers = [
     {
       animation: "starryNight",
-      opacity: 0.7,
+      opacity: 0.8,
       blendMode: "normal",
-      speed: 0.5,
+      speed: 0.4,
+      colors: ["#1a202c", "#2d3748", "#4a5568"],
     },
     {
       animation: "particleNetwork",
-      opacity: 0.3,
+      opacity: 0.4,
       blendMode: "screen",
-      speed: 1.2,
+      speed: 1.0,
+      colors: ["#22c55e", "#10b981", "#059669"],
     },
     {
       animation: "cosmicDust",
-      opacity: 0.5,
+      opacity: 0.3,
       blendMode: "overlay",
-      speed: 0.8,
+      speed: 0.6,
+      colors: ["#374151", "#4b5563", "#6b7280"],
     },
   ];
 
