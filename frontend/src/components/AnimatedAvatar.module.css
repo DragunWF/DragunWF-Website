@@ -1,0 +1,413 @@
+/* AnimatedAvatar.module.css
+ * Styles for the space-themed mage avatar head
+ * Features: floating animation, glowing eyes, cosmic aura, star particles
+ */
+
+.avatarContainer {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Floating animation for the entire avatar */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Cosmic aura background effect */
+.cosmicAura {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(
+    circle,
+    rgba(34, 197, 94, 0.2) 0%,
+    rgba(22, 163, 74, 0.15) 30%,
+    rgba(21, 128, 61, 0.1) 60%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  animation: cosmicGlow 3s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes cosmicGlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0.7;
+  }
+}
+
+/* Main head container */
+.head {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  z-index: 2;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.avatarContainer:hover .head {
+  transform: scale(1.05);
+}
+
+/* Space hood/helmet - hood-like shape */
+.spaceHood {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #15803d 0%,
+    #166534 30%,
+    #14532d 60%,
+    #0f172a 100%
+  );
+  border-radius: 60% 60% 45% 45%;
+  box-shadow: inset 0 -15px 25px rgba(0, 0, 0, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(34, 197, 94, 0.2);
+  animation: hoodShimmer 5s ease-in-out infinite;
+}
+
+@keyframes hoodShimmer {
+  0%,
+  100% {
+    box-shadow: inset 0 -15px 25px rgba(0, 0, 0, 0.4),
+      0 8px 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(34, 197, 94, 0.2);
+  }
+  50% {
+    box-shadow: inset 0 -15px 25px rgba(0, 0, 0, 0.4),
+      0 8px 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(34, 197, 94, 0.4);
+  }
+}
+
+/* Face area */
+.face {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 45px;
+  background: radial-gradient(
+    ellipse,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.6) 70%,
+    rgba(21, 128, 61, 0.2) 100%
+  );
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Eyes container */
+.eyesContainer {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Individual eye - now yellow and more friendly */
+.eye {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  background: #fbbf24;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #fbbf24, 0 0 24px #fbbf24,
+    0 0 36px rgba(251, 191, 36, 0.6);
+  animation: eyeGlow 3.5s ease-in-out infinite alternate;
+}
+
+.eyeGlow {
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: radial-gradient(
+    circle,
+    rgba(251, 191, 36, 0.7) 0%,
+    rgba(251, 191, 36, 0.4) 30%,
+    rgba(251, 191, 36, 0.2) 60%,
+    transparent 80%
+  );
+  border-radius: 50%;
+  animation: glowPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes eyeGlow {
+  0% {
+    box-shadow: 0 0 12px #fbbf24, 0 0 24px #fbbf24,
+      0 0 36px rgba(251, 191, 36, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 18px #fbbf24, 0 0 36px #fbbf24,
+      0 0 54px rgba(251, 191, 36, 0.8);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+/* Floating star particles */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #fbbf24;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #fbbf24;
+  animation: starFloat 8s ease-in-out infinite;
+}
+
+.star:nth-child(1) {
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 6s;
+}
+
+.star:nth-child(2) {
+  top: 25%;
+  right: 15%;
+  animation-delay: 1.5s;
+  animation-duration: 8s;
+}
+
+.star:nth-child(3) {
+  bottom: 25%;
+  left: 20%;
+  animation-delay: 3s;
+  animation-duration: 7s;
+}
+
+.star:nth-child(4) {
+  top: 60%;
+  right: 20%;
+  animation-delay: 4.5s;
+  animation-duration: 6.5s;
+}
+
+.star:nth-child(5) {
+  bottom: 35%;
+  right: 10%;
+  animation-delay: 6s;
+  animation-duration: 8.5s;
+}
+
+@keyframes starFloat {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0px) scale(0.8);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(-15px) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-10px) scale(1.2);
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1);
+  }
+}
+
+/* Magical burst particles for click interaction */
+.magicalBurst {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.burstParticle {
+  position: absolute;
+  background: #fbbf24;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #fbbf24, 0 0 24px #fbbf24;
+  animation: particleBurst 1s ease-out forwards;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes particleBurst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(
+        calc(-50% + var(--burst-x) * 0.15),
+        calc(-50% + var(--burst-y) * 0.15)
+      )
+      scale(1.3);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translate(
+        calc(-50% + var(--burst-x) * 0.6),
+        calc(-50% + var(--burst-y) * 0.6)
+      )
+      scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+        calc(-50% + var(--burst-x) * 1),
+        calc(-50% + var(--burst-y) * 1)
+      )
+      scale(0.2);
+  }
+}
+
+/* Hover effects */
+.avatarContainer:hover .cosmicAura {
+  animation-duration: 1.5s;
+  transform: scale(1.3);
+}
+
+.avatarContainer:hover .eye {
+  animation-duration: 1s;
+}
+
+.avatarContainer:hover .star {
+  animation-duration: 4s;
+}
+
+.avatarContainer:hover .spaceHood {
+  box-shadow: inset 0 -15px 25px rgba(0, 0, 0, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(34, 197, 94, 0.6);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .avatarContainer {
+    width: 120px;
+    height: 120px;
+    margin: 1.5rem auto;
+  }
+
+  .cosmicAura {
+    width: 112px;
+    height: 112px;
+  }
+
+  .head {
+    width: 80px;
+    height: 80px;
+  }
+
+  .face {
+    width: 52px;
+    height: 36px;
+  }
+
+  .eyesContainer {
+    width: 32px;
+    height: 12px;
+  }
+
+  .eye {
+    width: 6px;
+    height: 6px;
+  }
+
+  .star {
+    width: 2px;
+    height: 2px;
+  }
+
+  .burstParticle {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .avatarContainer {
+    width: 100px;
+    height: 100px;
+    margin: 1rem auto;
+  }
+
+  .cosmicAura {
+    width: 92px;
+    height: 92px;
+  }
+
+  .head {
+    width: 65px;
+    height: 65px;
+  }
+
+  .face {
+    width: 42px;
+    height: 29px;
+  }
+
+  .eyesContainer {
+    width: 26px;
+    height: 10px;
+  }
+
+  .eye {
+    width: 5px;
+    height: 5px;
+  }
+
+  .star {
+    width: 2px;
+    height: 2px;
+  }
+
+  .burstParticle {
+    width: 3px;
+    height: 3px;
+  }
+}

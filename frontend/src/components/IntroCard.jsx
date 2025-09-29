@@ -4,6 +4,7 @@ import styles from "./IntroCard.module.css";
 import Card from "./Card";
 import Description from "./Description";
 import Title from "./Title";
+import AnimatedAvatar from "./AnimatedAvatar";
 
 function IntroCard({
   name = "Default Name",
@@ -50,6 +51,7 @@ function IntroCard({
 
   return (
     <Card>
+      <AnimatedAvatar />
       <Title>{name}</Title>
       <Description textAlign="center">{description}</Description>
 
