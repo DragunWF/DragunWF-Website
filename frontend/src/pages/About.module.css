@@ -6,11 +6,320 @@
   width: 100vw;
   position: relative; /* Ensures it's above the background */
   z-index: 1; /* Makes sure content is above background */
-  gap: 1rem;
+  gap: 2rem; /* Increased spacing for better visual hierarchy */
   padding: 1rem; /* Prevents edge touching on small screens */
   box-sizing: border-box;
+  min-height: 100vh; /* Ensures full viewport coverage */
+}
+
+/* Magical scroll progress indicator */
+.scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(15, 23, 42, 0.3);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #22c55e 0%,
+    #16a34a 25%,
+    #fbbf24 50%,
+    #f59e0b 75%,
+    #22c55e 100%
+  );
+  background-size: 200% 100%;
+  animation: progressGlow 3s ease-in-out infinite;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+@keyframes progressGlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    background-position: 100% 50%;
+    box-shadow: 0 0 25px rgba(251, 191, 36, 0.6);
+  }
+}
+
+/* Subtle floating particles background */
+.particlesBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.floatingParticle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(34, 197, 94, 0.3);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.2);
+  animation: floatUpward 10s ease-in-out infinite;
+}
+
+@keyframes floatUpward {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+    transform: translateY(90vh) scale(1);
+  }
+  90% {
+    opacity: 0.3;
+    transform: translateY(-10vh) scale(1);
+  }
+  100% {
+    transform: translateY(-20vh) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Enhanced card container animations */
+.cardContainer {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 1rem 0;
+}
+
+.cardContainer.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Staggered animation delays */
+.cardContainer:nth-child(3) {
+  transition-delay: 0.1s;
+}
+
+.cardContainer:nth-child(4) {
+  transition-delay: 0.2s;
+}
+
+.cardContainer:nth-child(5) {
+  transition-delay: 0.3s;
+}
+
+/* Text highlights and special styling */
+.highlight {
+  position: relative;
+  color: #22c55e;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.highlight::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #22c55e, #fbbf24);
+  transition: width 0.4s ease;
+}
+
+.highlight:hover::after {
+  width: 100%;
+}
+
+.highlight:hover {
+  color: #16a34a;
+  text-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+}
+
+/* Book title styling */
+.bookTitle {
+  color: #fbbf24;
+  font-style: italic;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.bookTitle:hover {
+  color: #f59e0b;
+  text-shadow: 0 0 6px rgba(251, 191, 36, 0.4);
+}
+
+/* Magical link styling */
+.magicalLink {
+  position: relative;
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  animation: linkShimmer 3s ease-in-out infinite;
+}
+
+.magicalLink::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6, #1d4ed8);
+  transition: width 0.4s ease;
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
+}
+
+.magicalLink:hover::before {
+  width: 100%;
+}
+
+.magicalLink:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 4px 8px rgba(96, 165, 250, 0.3));
+}
+
+@keyframes linkShimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .bottomSpacing {
   margin-bottom: 50px;
+}
+
+/* Responsive design enhancements */
+@media (max-width: 768px) {
+  .wrapper {
+    margin-top: 80px;
+    gap: 1.5rem;
+    padding: 0.75rem;
+  }
+
+  .scrollProgress {
+    height: 3px;
+  }
+
+  .floatingParticle {
+    width: 2px;
+    height: 2px;
+  }
+
+  .highlight {
+    font-weight: 500;
+  }
+
+  .magicalLink {
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    margin-top: 60px;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .scrollProgress {
+    height: 2px;
+  }
+
+  .floatingParticle {
+    width: 1.5px;
+    height: 1.5px;
+  }
+
+  .cardContainer {
+    margin: 0.5rem 0;
+  }
+}
+
+/* Accessibility - Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cardContainer {
+    transition: opacity 0.3s ease;
+    transform: none;
+  }
+
+  .cardContainer.visible {
+    transform: none;
+  }
+
+  .floatingParticle {
+    animation: none;
+    opacity: 0.1;
+  }
+
+  .progressBar {
+    animation: none;
+  }
+
+  .highlight::after {
+    transition: none;
+  }
+
+  .magicalLink {
+    animation: none;
+    background: #60a5fa;
+    background-clip: initial;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    color: #60a5fa;
+  }
+
+  .magicalLink::before {
+    transition: none;
+  }
+
+  .bookTitle:hover {
+    text-shadow: none;
+  }
+
+  .highlight:hover {
+    text-shadow: none;
+  }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .highlight {
+    color: #34d399;
+  }
+
+  .highlight:hover {
+    color: #10b981;
+  }
+
+  .bookTitle {
+    color: #fcd34d;
+  }
+
+  .bookTitle:hover {
+    color: #f59e0b;
+  }
 }

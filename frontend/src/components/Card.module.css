@@ -1,44 +1,77 @@
 .card {
-  background: #1f2937;
-  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(31, 41, 55, 0.95) 0%,
+    rgba(17, 24, 39, 0.98) 50%,
+    rgba(31, 41, 55, 0.95) 100%
+  );
+  border-radius: 20px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  padding: 2rem;
+    0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(34, 197, 94, 0.1);
+  padding: 2.5rem;
   max-width: 600px;
   margin: 1rem;
-  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
-  border: 1px solid #374151;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(55, 65, 81, 0.6);
   opacity: 0;
   transform: translateY(20px);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(34, 197, 94, 0.1),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+
+.card:hover::before {
+  left: 100%;
 }
 
 .animationNormal {
-  animation: slideInNormal 0.3s ease-out forwards;
+  animation: slideInNormal 0.8s ease-out forwards;
 }
 
 .animationFullOpacity {
-  animation: slideInFullOpacity 0.3s ease-out forwards;
+  animation: slideInFullOpacity 0.8s ease-out forwards;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(34, 197, 94, 0.2), 0 0 30px rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.card:hover .content {
+  transform: scale(1.005);
 }
 
 /* Max widths for the card */
 
 .maxWidthNormal {
-  max-width: 600px;
+  max-width: 650px;
 }
 
 .maxWidthBlog {
   /* IMPORTANT: Determines the width of the card when the user is viewing the full blog */
-  max-width: 800px;
+  max-width: 850px;
 }
 
 .maxWidthModal {
-  max-width: 525px;
+  max-width: 575px;
 }
 
 /* End of max widths for the card */
@@ -47,14 +80,17 @@
   animation-delay: 0.1s;
 }
 .card:nth-child(2) {
-  animation-delay: 0.15s;
+  animation-delay: 0.2s;
 }
 .card:nth-child(3) {
-  animation-delay: 0.2s;
+  animation-delay: 0.3s;
 }
 
 .content {
   text-align: center;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 @keyframes slideInNormal {
