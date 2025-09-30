@@ -163,13 +163,12 @@
     rgba(31, 41, 55, 0.98),
     rgba(17, 24, 39, 0.99)
   );
-  backdrop-filter: blur(15px);
   border-top: 1px solid rgba(156, 163, 175, 0.2);
   display: flex;
   flex-direction: column;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: max-height 0.3s ease-out;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
@@ -182,54 +181,23 @@
   text-decoration: none;
   font-weight: 500;
   padding: 1rem 1.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease;
   border-left: 3px solid transparent;
   display: block;
   position: relative;
-  overflow: hidden;
-}
-
-.mobileLink::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(96, 165, 250, 0.05),
-    transparent
-  );
-  transition: left 0.5s ease;
 }
 
 .mobileLink:hover {
   color: #60a5fa;
-  background: linear-gradient(
-    90deg,
-    rgba(96, 165, 250, 0.05),
-    rgba(59, 130, 246, 0.02)
-  );
+  background: rgba(96, 165, 250, 0.1);
   border-left-color: #60a5fa;
   transform: translateX(4px);
-  box-shadow: inset 0 0 20px rgba(96, 165, 250, 0.1);
-}
-
-.mobileLink:hover::before {
-  left: 100%;
 }
 
 .mobileLink.active {
   color: #60a5fa;
-  background: linear-gradient(
-    90deg,
-    rgba(96, 165, 250, 0.1),
-    rgba(59, 130, 246, 0.05)
-  );
+  background: rgba(96, 165, 250, 0.15);
   border-left-color: #60a5fa;
-  box-shadow: inset 0 0 20px rgba(96, 165, 250, 0.15);
 }
 
 /* Responsive breakpoints */
