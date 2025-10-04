@@ -38,27 +38,40 @@ function Pagination({
         <BlogButton
           onClick={handlePreviousButtonClick}
           variant="blogOutline"
-          size="medium"
+          size="small"
           disabled={!hasPrevious}
           aria-label="Go to previous page"
+          className={styles.navigationButton}
         >
-          Previous
+          <span className={styles.buttonText}>
+            <span className={styles.fullText}>Previous</span>
+            <span className={styles.shortText}>‹</span>
+          </span>
         </BlogButton>
 
         <div className={styles.paginationInfo}>
           <span className={styles.paginationText}>
-            Page {currentPageCount} of {maxPageCount}
+            <span className={styles.fullPageText}>
+              Page {currentPageCount} of {maxPageCount}
+            </span>
+            <span className={styles.shortPageText}>
+              {currentPageCount}/{maxPageCount}
+            </span>
           </span>
         </div>
 
         <BlogButton
           onClick={handleNextButtonClick}
           variant="blogOutline"
-          size="medium"
+          size="small"
           disabled={!hasNext}
           aria-label="Go to next page"
+          className={styles.navigationButton}
         >
-          Next
+          <span className={styles.buttonText}>
+            <span className={styles.fullText}>Next</span>
+            <span className={styles.shortText}>›</span>
+          </span>
         </BlogButton>
       </div>
     </Card>
