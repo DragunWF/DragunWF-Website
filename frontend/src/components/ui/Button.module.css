@@ -172,6 +172,7 @@
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .button {
+    width: 100%;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
   }

@@ -101,3 +101,10 @@
     transform: translateY(0);
   }
 }
+
+@media screen and (max-width: 600px) {
+  .card {
+    padding: 1.95rem;
+    margin: 0.45rem;
+  }
+}
