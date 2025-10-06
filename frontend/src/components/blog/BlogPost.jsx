@@ -10,7 +10,6 @@ import descriptionStyles from "../ui/Description.module.css";
 import { blogPostApiUrl } from "../../constants/urls";
 import { blogsKey } from "../../constants/localStorageKeys";
 import { formatDate } from "../../helpers/formatters";
-import useCache from "../../hooks/useCache";
 
 import Card from "../ui/Card";
 import Title from "../ui/Title";
@@ -24,7 +23,6 @@ function BlogPost() {
   const [currentBlog, setCurrentBlog] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const blogCache = useCache(blogsKey);
 
   useEffect(
     function () {
