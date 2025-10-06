@@ -1,0 +1,352 @@
+/**
+ * BlogMarkdown.module.css
+ * 
+ * Custom styles for Markdown content rendered in blog posts.
+ * Provides consistent, accessible, and visually appealing formatting
+ * for various Markdown elements including links, code blocks, lists, etc.
+ */
+
+/* ==================== LINKS ==================== */
+/**
+ * Magical link styling inspired by the About page
+ * Links open in new tabs for better UX
+ */
+.markdownLink {
+  position: relative;
+  color: #60a5fa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  animation: linkShimmer 3s ease-in-out infinite;
+  cursor: pointer;
+  word-break: break-word; /* Prevent long URLs from breaking layout */
+}
+
+.markdownLink::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6, #1d4ed8);
+  transition: width 0.4s ease;
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
+}
+
+.markdownLink:hover::before {
+  width: 100%;
+}
+
+.markdownLink:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 4px 8px rgba(96, 165, 250, 0.3));
+}
+
+@keyframes linkShimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ==================== CODE BLOCKS ==================== */
+/**
+ * Inline code styling
+ * Small snippets within paragraphs
+ */
+.markdownInlineCode {
+  display: inline; /* Ensure inline display */
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.15),
+    rgba(91, 33, 182, 0.1)
+  );
+  color: #c4b5fd;
+  padding: 0.2em 0.5em;
+  border-radius: 0.375rem;
+  font-family: "Fira Code", "Monaco", "Consolas", "Courier New", monospace;
+  font-size: 0.9em;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  box-shadow: 0 2px 4px rgba(124, 58, 237, 0.1);
+  white-space: pre-wrap;
+  word-break: break-word;
+  vertical-align: baseline; /* Align properly with surrounding text */
+}
+
+/**
+ * Code block container styling
+ * Multi-line code snippets
+ */
+.markdownCodeBlock {
+  background: linear-gradient(
+    135deg,
+    rgba(17, 24, 39, 0.95),
+    rgba(31, 41, 55, 0.98)
+  );
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(124, 58, 237, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.markdownCodeBlock::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7c3aed, #a855f7, #7c3aed);
+  border-radius: 0.75rem 0.75rem 0 0;
+  opacity: 0.6;
+}
+
+.markdownCodeBlock code {
+  color: #e5e7eb;
+  font-family: "Fira Code", "Monaco", "Consolas", "Courier New", monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  display: block;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Syntax highlighting support */
+.markdownCodeBlock code .token.comment {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.markdownCodeBlock code .token.keyword {
+  color: #c084fc;
+}
+
+.markdownCodeBlock code .token.string {
+  color: #86efac;
+}
+
+.markdownCodeBlock code .token.function {
+  color: #60a5fa;
+}
+
+.markdownCodeBlock code .token.number {
+  color: #fbbf24;
+}
+
+/* ==================== BLOCKQUOTES ==================== */
+/**
+ * Styled blockquotes for emphasized content
+ */
+.markdownBlockquote {
+  border-left: 4px solid #7c3aed;
+  background: linear-gradient(
+    90deg,
+    rgba(124, 58, 237, 0.1),
+    rgba(91, 33, 182, 0.05)
+  );
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+  color: #d1d5db;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.1);
+}
+
+.markdownBlockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==================== HEADINGS ==================== */
+/**
+ * Styled headings within blog content
+ */
+.markdownHeading {
+  color: #f9fafb;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 50%, #ffffff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.markdownHeading:first-child {
+  margin-top: 0;
+}
+
+/* ==================== HORIZONTAL RULE ==================== */
+/**
+ * Divider styling
+ */
+.markdownHr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(124, 58, 237, 0.5),
+    transparent
+  );
+  margin: 2rem 0;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
+}
+
+/* ==================== TABLES ==================== */
+/**
+ * Styled tables for data presentation
+ */
+.markdownTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.markdownTable thead {
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+}
+
+.markdownTable th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(124, 58, 237, 0.5);
+}
+
+.markdownTable td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+  color: #d1d5db;
+}
+
+.markdownTable tbody tr {
+  background: rgba(17, 24, 39, 0.5);
+  transition: background 0.2s ease;
+}
+
+.markdownTable tbody tr:hover {
+  background: rgba(124, 58, 237, 0.1);
+}
+
+/* ==================== IMAGES ==================== */
+/**
+ * Markdown images styling
+ */
+.markdownImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 768px) {
+  .markdownCodeBlock {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+  }
+
+  .markdownCodeBlock code {
+    font-size: 0.85rem;
+  }
+
+  .markdownBlockquote {
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+  }
+
+  .markdownTable {
+    font-size: 0.875rem;
+  }
+
+  .markdownTable th,
+  .markdownTable td {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .markdownCodeBlock {
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+    font-size: 0.8rem;
+  }
+
+  .markdownCodeBlock code {
+    font-size: 0.8rem;
+  }
+
+  .markdownInlineCode {
+    font-size: 0.85em;
+    padding: 0.15em 0.4em;
+  }
+
+  .markdownBlockquote {
+    padding: 0.5rem 0.75rem;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+
+  .markdownTable {
+    font-size: 0.8rem;
+  }
+
+  .markdownTable th,
+  .markdownTable td {
+    padding: 0.375rem 0.5rem;
+  }
+
+  .markdownHeading {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+/**
+ * Ensure good contrast and focus states
+ */
+.markdownLink:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+.markdownCodeBlock:focus-within {
+  outline: 2px solid rgba(124, 58, 237, 0.5);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .markdownLink,
+  .markdownLink::before {
+    animation: none;
+    transition: none;
+  }
+
+  .markdownLink:hover {
+    transform: none;
+  }
+}

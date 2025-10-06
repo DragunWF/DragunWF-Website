@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Markdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import styles from "./BlogPost.module.css";
+import markdownStyles from "./BlogMarkdown.module.css";
 import descriptionStyles from "../ui/Description.module.css";
 import { blogPostApiUrl } from "../../constants/urls";
 import { blogsKey } from "../../constants/localStorageKeys";
@@ -147,18 +150,158 @@ function BlogPost() {
         <div className={styles.blogText}>
           <Markdown
             components={{
+              // Paragraph with justified text alignment
               p: ({ node, ...props }) => (
                 <p className={descriptionStyles.justify} {...props} />
               ),
+
+              // External links with magical styling (opens in new tab)
+              a: ({ node, href, children, ...props }) => (
+                <a
+                  href={href}
+                  className={markdownStyles.markdownLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  {...props}
+                >
+                  {children}
+                </a>
+              ),
+
+              // Code blocks with syntax highlighting
+              code: ({ node, inline, className, children, ...props }) => {
+                const match = /language-(\w+)/.exec(className || "");
+                const language = match ? match[1] : "";
+
+                /**
+                 * Robust inline vs block code detection:
+                 * - Inline code (single backticks): No className, should stay in text flow
+                 * - Block code (triple backticks): Has className (e.g., "language-js")
+                 *
+                 * The inline prop from react-markdown isn't always reliable,
+                 * so we also check for className presence which is a more reliable indicator.
+                 */
+                const isInline = inline !== false && !className;
+
+                // Inline code - render as inline element
+                if (isInline) {
+                  return (
+                    <code
+                      className={markdownStyles.markdownInlineCode}
+                      {...props}
+                    >
+                      {children}
+                    </code>
+                  );
+                }
+
+                // Multi-line code block with syntax highlighting
+                return (
+                  <div className={markdownStyles.markdownCodeBlock}>
+                    <SyntaxHighlighter
+                      style={vscDarkPlus}
+                      language={language}
+                      PreTag="div"
+                      customStyle={{
+                        margin: 0,
+                        padding: 0,
+                        background: "transparent",
+                        fontSize: "0.9rem",
+                      }}
+                      {...props}
+                    >
+                      {String(children).replace(/\n$/, "")}
+                    </SyntaxHighlighter>
+                  </div>
+                );
+              },
+
+              // Blockquote styling
+              blockquote: ({ node, ...props }) => (
+                <blockquote
+                  className={markdownStyles.markdownBlockquote}
+                  {...props}
+                />
+              ),
+
+              // Headings (h1-h6)
+              h1: ({ node, ...props }) => (
+                <h1
+                  className={markdownStyles.markdownHeading}
+                  style={{ fontSize: "2rem", textAlign: "left" }}
+                  {...props}
+                />
+              ),
+              h2: ({ node, ...props }) => (
+                <h2
+                  className={markdownStyles.markdownHeading}
+                  style={{ fontSize: "1.75rem", textAlign: "left" }}
+                  {...props}
+                />
+              ),
+              h3: ({ node, ...props }) => (
+                <h3
+                  className={markdownStyles.markdownHeading}
+                  style={{ fontSize: "1.5rem", textAlign: "left" }}
+                  {...props}
+                />
+              ),
+              h4: ({ node, ...props }) => (
+                <h4
+                  className={markdownStyles.markdownHeading}
+                  style={{ fontSize: "1.25rem", textAlign: "left" }}
+                  {...props}
+                />
+              ),
+              h5: ({ node, ...props }) => (
+                <h5
+                  className={markdownStyles.markdownHeading}
+                  style={{ fontSize: "1.1rem" }}
+                  {...props}
+                />
+              ),
+              h6: ({ node, ...props }) => (
+                <h6
+                  className={markdownStyles.markdownHeading}
+                  style={{ fontSize: "1rem", textAlign: "left" }}
+                  {...props}
+                />
+              ),
+
+              // Horizontal rule
+              hr: ({ node, ...props }) => (
+                <hr className={markdownStyles.markdownHr} {...props} />
+              ),
+
+              // Unordered lists
               ul: ({ node, ...props }) => (
                 <ul style={{ marginBottom: "16px" }} {...props} />
               ),
+
+              // Ordered lists
               ol: ({ node, ...props }) => (
                 <ol style={{ marginBottom: "16px" }} {...props} />
               ),
+
+              // List items
               li: ({ node, ...props }) => (
                 <li
                   style={{ textAlign: "left", marginLeft: "20px" }}
+                  {...props}
+                />
+              ),
+
+              // Tables
+              table: ({ node, ...props }) => (
+                <table className={markdownStyles.markdownTable} {...props} />
+              ),
+
+              // Images
+              img: ({ node, alt, ...props }) => (
+                <img
+                  className={markdownStyles.markdownImage}
+                  alt={alt || "Blog image"}
+                  loading="lazy"
                   {...props}
                 />
               ),
