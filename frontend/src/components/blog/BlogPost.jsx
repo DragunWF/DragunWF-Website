@@ -28,68 +28,80 @@ function BlogPost() {
 
   useEffect(
     function () {
-      function getBlogById(blogArray, id) {
-        return blogArray.find((blog) => blog.id == id);
+      /**
+       * Find a blog post by ID from cached data across all pages
+       * @param {number} id - The blog post ID to find
+       * @returns {Object|null} - The found blog post or null
+       */
+      function findBlogInCache(id) {
+        // Check all cached pages for the blog post
+        const cacheKeys = Object.keys(localStorage).filter((key) =>
+          key.startsWith(blogsKey)
+        );
+
+        for (const key of cacheKeys) {
+          try {
+            const cached = localStorage.getItem(key);
+            if (!cached) continue;
+
+            const parsed = JSON.parse(cached);
+            const data = parsed.data || parsed;
+            const results = data.results || data;
+
+            if (Array.isArray(results)) {
+              const found = results.find((blog) => blog.id == id);
+              if (found) return found;
+            }
+          } catch (err) {
+            console.error(`Error parsing cache key ${key}:`, err);
+          }
+        }
+
+        return null;
       }
 
-      async function fetchBlogPost() {
+      async function loadBlogPost() {
         try {
           setIsLoading(true);
           setIsError(false);
 
-          // First, try to get from cached blog list
-          let blogArray = blogCache.get();
-
-          if (!blogArray) {
-            // Cache miss - fetch all blogs (we need all blogs to find the specific one)
-            // Note: We could optimize this with a separate endpoint for individual posts
-            const res = await fetch(`${blogPostApiUrl}?page_size=1000`); // Get all posts
-            if (!res.ok) {
-              throw new Error(`HTTP error! status: ${res.status}`);
-            }
-            const response = await res.json();
-            blogArray = response.results || response; // Handle both paginated and non-paginated responses
-            blogCache.set(blogArray);
-          }
-
-          // Find the specific blog post
-          const foundBlog = getBlogById(blogArray, postId);
+          /**
+           * PERFORMANCE OPTIMIZATION:
+           * The full blog post data (including complete description) is already
+           * cached when users view the blog list. No need to make an API call!
+           * We simply retrieve it from the cache.
+           */
+          const foundBlog = findBlogInCache(postId);
 
           if (!foundBlog) {
-            throw new Error(`Blog post with ID '${postId}' was not found!`);
-          }
-
-          setCurrentBlog(foundBlog);
-        } catch (err) {
-          console.error(err);
-          setIsError(true);
-
-          // Fallback: try to use cached data even if expired
-          const fallbackData = localStorage.getItem(blogsKey);
-          if (fallbackData) {
+            // Blog not found in any cached page
             try {
-              const parsed = JSON.parse(fallbackData);
-              // Handle both old array format and new paginated format
-              const blogArray = Array.isArray(parsed)
-                ? parsed
-                : parsed.results || [];
-              const foundBlog = getBlogById(blogArray, postId);
-              if (foundBlog) {
-                setCurrentBlog(foundBlog);
-                setIsError(false);
-              }
-            } catch (parseErr) {
-              console.error("Failed to parse cached data:", parseErr);
+              const response = await fetch(`${blogPostApiUrl}/${postId}`);
+              if (!response.ok) throw new Error("Network response was not ok");
+              const fetchedBlogData = await response.json();
+              console.log("Fetched blog data from API:", fetchedBlogData);
+              setCurrentBlog(fetchedBlogData);
+            } catch (err) {
+              setIsError(true);
+              console.warn(
+                `Blog post with ID '${postId}' has not been found in cache or via API.`,
+                err
+              );
             }
+          } else {
+            setCurrentBlog(foundBlog);
           }
+        } catch (err) {
+          console.error("Error loading blog post:", err);
+          setIsError(true);
         } finally {
           setIsLoading(false);
         }
       }
 
-      fetchBlogPost();
+      loadBlogPost();
     },
-    [postId] // eslint-disable-line react-hooks/exhaustive-deps
+    [postId, blogsKey] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   // Show loader
@@ -121,19 +133,19 @@ function BlogPost() {
     );
   }
 
-  // Show "not found" if no blog found
-  if (!currentBlog) {
+  // Show "not found" if no blog found in cache
+  if (!currentBlog && !isLoading) {
     return (
       <div className={styles.wrapper}>
         <Card>
           <Title>Blog Post Not Found</Title>
           <Description>
-            The blog post you’re looking for doesn’t exist or may have been
-            removed.
+            This blog post hasn&apos;t been loaded yet. Please visit the blog
+            list first to load the posts, then navigate back here.
           </Description>
           <Link to="../blog">
             <BlogButton variant="blogOutline" width="half">
-              Back to Blog
+              Go to Blog List
             </BlogButton>
           </Link>
         </Card>
