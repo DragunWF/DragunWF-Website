@@ -1,19 +1,239 @@
+/**
+ * Magical Fantasy Spinning Loader
+ * 
+ * A mystical spinning loader that clearly indicates loading while maintaining magical aesthetics:
+ * - Primary spinning magical energy trail (obvious loader motion)
+ * - Glowing magical core with pulsating effects
+ * - Starfield background for fantasy atmosphere
+ * - Clear visual indication of continuous loading/spinning
+ * - Color palette: Deep purples, cosmic blues, mystical teals, and starlight whites
+ */
+
 .loader {
-  width: 100px;
-  padding: 8px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #3498db;
-  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
-  -webkit-mask: var(--_m);
-  mask: var(--_m);
-  -webkit-mask-composite: source-out;
-  mask-composite: subtract;
-  animation: l3 1s infinite linear;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
-@keyframes l3 {
-  to {
-    transform: rotate(1turn);
+/* Main magical spinning ring - the primary loader indicator */
+.loader::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 6px solid transparent;
+  border-top: 6px solid rgba(138, 43, 226, 0.9);
+  border-right: 6px solid rgba(147, 0, 211, 0.7);
+  border-bottom: 6px solid rgba(72, 209, 204, 0.5);
+  border-left: 6px solid rgba(75, 0, 130, 0.3);
+  animation: magicalSpin 1.2s linear infinite;
+  filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.8))
+    drop-shadow(0 0 25px rgba(147, 0, 211, 0.4));
+}
+
+/* Outer magical aura ring */
+.loader::after {
+  content: "";
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top: 3px solid rgba(255, 255, 255, 0.6);
+  border-right: 3px solid rgba(72, 209, 204, 0.4);
+  border-bottom: 3px solid transparent;
+  border-left: 3px solid rgba(138, 43, 226, 0.3);
+  animation: magicalSpin 2s linear infinite reverse;
+  filter: blur(1px);
+  opacity: 0.7;
+}
+
+/* Inner magical energy core */
+.loader > div {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(147, 0, 211, 0.8) 30%,
+    rgba(75, 0, 130, 0.6) 60%,
+    transparent 90%
+  );
+  animation: coreGlow 2s ease-in-out infinite alternate;
+  box-shadow: 0 0 20px rgba(147, 0, 211, 0.8),
+    inset 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Secondary spinning trail for enhanced loader effect */
+.loader > div::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top: 2px solid rgba(72, 209, 204, 0.8);
+  border-right: 2px solid rgba(138, 43, 226, 0.6);
+  border-bottom: 2px solid transparent;
+  border-left: 2px solid transparent;
+  animation: magicalSpin 1.8s linear infinite;
+  filter: blur(0.5px);
+}
+
+/* Magical particle trail effect */
+.loader > div::after {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 5%,
+    transparent 10%,
+    rgba(72, 209, 204, 0.3) 15%,
+    transparent 20%,
+    rgba(138, 43, 226, 0.3) 25%,
+    transparent 30%,
+    transparent 100%
+  );
+  mask: radial-gradient(
+    circle,
+    transparent 70%,
+    black 72%,
+    black 74%,
+    transparent 76%
+  );
+  -webkit-mask: radial-gradient(
+    circle,
+    transparent 70%,
+    black 72%,
+    black 74%,
+    transparent 76%
+  );
+  animation: particleTrail 3s linear infinite;
+  opacity: 0.8;
+}
+
+/* Starfield background for magical atmosphere */
+.loader > span {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background-image: radial-gradient(
+      1px 1px at 20px 30px,
+      rgba(255, 255, 255, 0.8),
+      transparent
+    ),
+    radial-gradient(1px 1px at 40px 70px, rgba(72, 209, 204, 0.6), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(147, 0, 211, 0.7), transparent),
+    radial-gradient(
+      1px 1px at 130px 80px,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    ),
+    radial-gradient(1px 1px at 160px 30px, rgba(138, 43, 226, 0.5), transparent);
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  animation: starfieldTwinkle 4s ease-in-out infinite;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Primary magical spinning animation - fast and obvious */
+@keyframes magicalSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Core glow animation - pulsating magical energy */
+@keyframes coreGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(147, 0, 211, 0.6),
+      inset 0 0 10px rgba(255, 255, 255, 0.2);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(147, 0, 211, 1), 0 0 45px rgba(138, 43, 226, 0.8),
+      inset 0 0 20px rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+  }
+}
+
+/* Particle trail animation - magical sparkles following the spinner */
+@keyframes particleTrail {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.6;
+  }
+}
+
+/* Starfield twinkling effect */
+@keyframes starfieldTwinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+  .loader {
+    width: 100px;
+    height: 100px;
+  }
+
+  .loader::before {
+    border-width: 5px;
+  }
+
+  .loader::after {
+    border-width: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loader {
+    width: 80px;
+    height: 80px;
+  }
+
+  .loader::before {
+    border-width: 4px;
+  }
+
+  .loader::after {
+    border-width: 2px;
   }
 }
