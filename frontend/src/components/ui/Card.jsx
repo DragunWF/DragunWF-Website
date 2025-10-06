@@ -5,7 +5,7 @@ function Card({ children, maxWidthType = "normal", animationType = "normal" }) {
   const maxWidthClasses = {
     normal: styles.maxWidthNormal,
     blog: styles.maxWidthBlog,
-    moda: styles.maxWidthModal,
+    modal: styles.maxWidthModal,
   };
   const animationTypeClasses = {
     normal: styles.animationNormal,
