@@ -241,7 +241,7 @@
   .wrapper {
     margin-top: 60px;
     gap: 1rem;
-    padding: 0.5rem;
+    padding: 0;
   }
 
   .scrollProgress {
