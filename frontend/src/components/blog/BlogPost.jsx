@@ -24,6 +24,33 @@ function BlogPost() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  /**
+   * Get the image URL for the blog post with priority fallback
+   * @param {Object} blog - The blog post object
+   * @returns {string|null} - The image URL or null if no image available
+   */
+  const getBlogImageUrl = (blog) => {
+    // Priority 1: Legacy image_link field (for backward compatibility)
+    if (blog.image_link && blog.image_link.trim() !== "") {
+      return blog.image_link;
+    }
+
+    // Priority 2: Cloudinary image field
+    if (blog.image) {
+      // Handle Cloudinary field - now it should be a URL string from the serializer
+      if (typeof blog.image === "string" && blog.image.trim() !== "") {
+        return blog.image;
+      }
+      // Fallback: check if it's still an object format (for safety)
+      else if (typeof blog.image === "object" && blog.image.url) {
+        return blog.image.url;
+      }
+    }
+
+    // No image available
+    return null;
+  };
+
   useEffect(
     function () {
       /**
@@ -156,7 +183,9 @@ function BlogPost() {
     <div className={styles.wrapper}>
       <Card maxWidthType="blog">
         <Title>{currentBlog.title}</Title>
-        {currentBlog.image_link && <Image src={currentBlog.image_link} />}
+        {getBlogImageUrl(currentBlog) && (
+          <Image src={getBlogImageUrl(currentBlog)} />
+        )}
         <div className={styles.blogText}>
           <Markdown
             components={{

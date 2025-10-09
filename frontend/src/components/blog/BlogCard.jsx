@@ -13,13 +13,40 @@ import { formatDate } from "../../helpers/formatters";
 function BlogCard({
   postId,
   title,
-  imageLink,
+  image, // New Cloudinary image field
+  imageLink, // Legacy image_link field (deprecated)
   description,
   dateCreated,
   dateUpdated,
 }) {
   const rawDescription = removeMd(description);
   const maxCharacterDisplayCount = 250;
+
+  /**
+   * Get the image URL for the blog card with priority fallback
+   * @returns {string|null} - The image URL or null if no image available
+   */
+  const getBlogImageUrl = () => {
+    // Priority 1: Legacy image_link field (for backward compatibility)
+    if (imageLink && imageLink.trim() !== "") {
+      return imageLink;
+    }
+
+    // Priority 2: Cloudinary image field
+    if (image) {
+      // Handle Cloudinary field - now it should be a URL string from the serializer
+      if (typeof image === "string" && image.trim() !== "") {
+        return image;
+      }
+      // Fallback: check if it's still an object format (for safety)
+      else if (typeof image === "object" && image.url) {
+        return image.url;
+      }
+    }
+
+    // No image available
+    return null;
+  };
 
   function trimDescription(fullDescription) {
     if (fullDescription <= maxCharacterDisplayCount) {
@@ -31,7 +58,7 @@ function BlogCard({
   return (
     <Card>
       <Title>{title}</Title>
-      {imageLink && <Image src={imageLink} />}
+      {getBlogImageUrl() && <Image src={getBlogImageUrl()} />}
       <Description textAlign="justify">
         {trimDescription(rawDescription)}
       </Description>
@@ -50,7 +77,14 @@ function BlogCard({
 
 BlogCard.propTypes = {
   title: PropTypes.string.isRequired,
-  imageLink: PropTypes.string,
+  image: PropTypes.oneOfType([
+    PropTypes.string, // Direct URL string
+    PropTypes.shape({
+      // Cloudinary object
+      url: PropTypes.string,
+    }),
+  ]),
+  imageLink: PropTypes.string, // Legacy field (deprecated)
   description: PropTypes.string.isRequired,
   dateCreated: PropTypes.string.isRequired,
   dateUpdated: PropTypes.string.isRequired,

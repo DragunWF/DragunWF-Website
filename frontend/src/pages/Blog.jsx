@@ -12,6 +12,17 @@ import Title from "../components/ui/Title";
 import Description from "../components/ui/Description";
 import Loader from "../components/ui/Loader";
 
+/**
+ * Blog List Page Component
+ *
+ * Displays paginated blog posts with support for both Cloudinary images
+ * and legacy image links. Uses intelligent caching for performance.
+ *
+ * Image Priority:
+ * 1. Legacy image_link field (for backward compatibility)
+ * 2. Cloudinary image field (new preferred method)
+ */
+
 function Blog() {
   const blogPostsPerPage = 4;
 
@@ -29,6 +40,23 @@ function Blog() {
 
   function handleUpdateCurrentPage(pageCount) {
     setCurrentPage(pageCount);
+  }
+
+  /**
+   * Helper function to clear blog cache (useful for debugging Cloudinary image issues)
+   * Can be called from browser console: window.clearBlogCache()
+   */
+  const clearBlogCache = () => {
+    const keys = Object.keys(localStorage).filter((key) =>
+      key.startsWith(blogsKey)
+    );
+    keys.forEach((key) => localStorage.removeItem(key));
+    console.log(`Cleared ${keys.length} blog cache entries`);
+  };
+
+  // Make clearBlogCache available globally for debugging
+  if (typeof window !== "undefined") {
+    window.clearBlogCache = clearBlogCache;
   }
 
   useEffect(
@@ -77,6 +105,12 @@ function Blog() {
                 timestamp: Date.now(),
               })
             );
+
+            // Debug: Log the API response to check image field format
+            console.log("Fresh API data for debugging:", data);
+          } else {
+            // Debug: Log cached data to check image field format
+            console.log("Cached data for debugging:", data);
           }
 
           setBlogs(data.results || []);
@@ -171,7 +205,8 @@ function Blog() {
           return (
             <BlogCard
               title={blog.title}
-              imageLink={blog.image_link ? blog.image_link : ""}
+              image={blog.image} // New Cloudinary image field
+              imageLink={blog.image_link ? blog.image_link : ""} // Legacy image_link field
               description={blog.description}
               dateCreated={blog.date_created}
               dateUpdated={blog.date_updated}
