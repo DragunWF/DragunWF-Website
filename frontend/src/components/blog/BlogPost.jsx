@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useSearchParams, Link } from "react-router-dom";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -20,9 +20,14 @@ import BlogButton from "./BlogButton";
 
 function BlogPost() {
   const { postId } = useParams();
+  const [searchParams] = useSearchParams();
   const [currentBlog, setCurrentBlog] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+
+  // Get the page parameter to preserve it when going back
+  const page = searchParams.get("page") || "1";
+  const backUrl = `../blog?page=${page}`;
 
   /**
    * Get the image URL for the blog post with priority fallback
@@ -148,7 +153,7 @@ function BlogPost() {
             An unexpected error occurred while trying to retrieve the blog post
             you requested. Please try refreshing the page or check back later.
           </Description>
-          <Link to="../blog">
+          <Link to={backUrl}>
             <BlogButton variant="blogSecondary" width="half">
               Back
             </BlogButton>
@@ -168,7 +173,7 @@ function BlogPost() {
             This blog post hasn&apos;t been loaded yet. Please visit the blog
             list first to load the posts, then navigate back here.
           </Description>
-          <Link to="../blog">
+          <Link to={backUrl}>
             <BlogButton variant="blogOutline" width="half">
               Go to Blog List
             </BlogButton>
@@ -353,7 +358,7 @@ function BlogPost() {
           <span>Created: {formatDate(currentBlog.date_created)}</span>
           <span>Updated: {formatDate(currentBlog.date_updated)}</span>
         </div>
-        <Link to="../blog">
+        <Link to={backUrl}>
           <BlogButton variant="blog" width="half">
             Back
           </BlogButton>

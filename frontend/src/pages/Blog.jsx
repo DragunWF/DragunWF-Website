@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { blogPostApiUrl } from "../constants/urls";
 import { blogsKey } from "../constants/localStorageKeys";
 import useCache from "../hooks/useCache";
@@ -25,6 +26,7 @@ import Loader from "../components/ui/Loader";
 
 function Blog() {
   const blogPostsPerPage = 4;
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [blogs, setBlogs] = useState([]);
   const [paginationInfo, setPaginationInfo] = useState({
@@ -36,10 +38,13 @@ function Blog() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+
+  // Get current page from URL parameter, default to 1
+  const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
   function handleUpdateCurrentPage(pageCount) {
-    setCurrentPage(pageCount);
+    // Update URL parameter when page changes
+    setSearchParams({ page: pageCount.toString() });
   }
 
   /**
@@ -211,6 +216,7 @@ function Blog() {
               dateCreated={blog.date_created}
               dateUpdated={blog.date_updated}
               postId={blog.id}
+              currentPage={currentPage} // Pass current page for back navigation
               key={blog.id}
             />
           );

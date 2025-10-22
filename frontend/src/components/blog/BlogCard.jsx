@@ -18,6 +18,7 @@ function BlogCard({
   description,
   dateCreated,
   dateUpdated,
+  currentPage = 1, // Current page for back navigation
 }) {
   const rawDescription = removeMd(description);
   const maxCharacterDisplayCount = 250;
@@ -62,7 +63,7 @@ function BlogCard({
       <Description textAlign="justify">
         {trimDescription(rawDescription)}
       </Description>
-      <Link to={`${postId}`}>
+      <Link to={`${postId}?page=${currentPage}`}>
         <BlogButton variant="blog" width="half">
           View Full Blog
         </BlogButton>
@@ -89,6 +90,7 @@ BlogCard.propTypes = {
   dateCreated: PropTypes.string.isRequired,
   dateUpdated: PropTypes.string.isRequired,
   postId: PropTypes.number.isRequired,
+  currentPage: PropTypes.number, // Current page for back navigation
 };
 
 export default BlogCard;
